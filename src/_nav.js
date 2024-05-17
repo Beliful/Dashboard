@@ -122,6 +122,11 @@ const _nav = [
         name: 'Tooltips',
         to: '/base/tooltips',
       },
+      {
+        component: CNavItem,
+        name: 'Map',
+        to: '/base/map',
+      },
     ],
   },
   {
