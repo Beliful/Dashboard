@@ -8,6 +8,7 @@ const tractors = [
             longitude: -118.243683
         },
         plateNumber: "34 ABC 123",
+        imagePath: 'src/assets/images/tractor1.png',
         vehicleStatus: {
             speed: 45, // in km/h
             rpm: 2200,
@@ -32,6 +33,7 @@ const tractors = [
             longitude: -74.005974
         },
         plateNumber: "35 ABD 456",
+        imagePath: 'src/assets/images/tractor2.png',
         vehicleStatus: {
             speed: 55,
             rpm: 0,
@@ -56,6 +58,7 @@ const tractors = [
             longitude: -0.127758
         },
         plateNumber: "06 ASD 789",
+        imagePath: 'src/assets/images/tractor1.png',
         vehicleStatus: {
             speed: 50,
             rpm: 2300,
@@ -80,6 +83,7 @@ const tractors = [
             longitude: 2.352222
         },
         plateNumber: "34 DEF 012",
+        imagePath: 'src/assets/images/tractor1.png',
         vehicleStatus: {
             speed: 60,
             rpm: 2600,
@@ -104,6 +108,7 @@ const tractors = [
             longitude: -87.629799
         },
         plateNumber: "35 GHI 345",
+        imagePath: 'src/assets/images/tractor2.png',
         vehicleStatus: {
             speed: 48,
             rpm: 2400,

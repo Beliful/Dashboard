@@ -38,7 +38,7 @@ const Dashboard = () => {
                   <CCol key={tractor.id} sm="6" md="4" lg="3" className="mb-4">
                     <CCard style={{ width: '18rem' }}>
                       <CCardImage
-                       orientation="top" src={TractorImg} />
+                       orientation="top" src={tractor.imagePath} />
                        <CCardBody>
                          <CCardTitle>{tractor.owner}'s Tractor</CCardTitle>
                          <CCardText>
@@ -46,7 +46,7 @@ const Dashboard = () => {
                            <strong>Plate Number:</strong> {tractor.plateNumber}<br />
                            <strong>Engine Status:</strong> {tractor.vehicleStatus.rpm > 0 ? 'Running' : 'Stopped'}
                          </CCardText>
-                         <CButton color="primary" href="#">
+                         <CButton color="primary" href="#/base/cards">
                            View Details
                          </CButton>
                        </CCardBody>
