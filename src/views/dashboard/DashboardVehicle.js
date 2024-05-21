@@ -22,12 +22,18 @@ import {
 } from '@coreui/react'
 import TractorImg from 'src/assets/images/tractor1.png'
 import tractors from 'src/data/tractor';
-
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (id) => {
+    navigate(`/dashboard/vehicle/${id}`);
+  };
   
   return (
     <>
+
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
@@ -46,9 +52,12 @@ const Dashboard = () => {
                            <strong>Plate Number:</strong> {tractor.plateNumber}<br />
                            <strong>Engine Status:</strong> {tractor.vehicleStatus.rpm > 0 ? 'Running' : 'Stopped'}
                          </CCardText>
-                         <CButton color="primary" href="#/base/cards">
-                           View Details
-                         </CButton>
+                         <CButton 
+                          color="primary" 
+                          onClick={() => handleButtonClick(tractor.id)}
+                        >
+                          View Details
+                        </CButton>
                        </CCardBody>
                        </CCard>
                   </CCol>
