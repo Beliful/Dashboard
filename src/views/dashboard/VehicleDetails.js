@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   CCard,
@@ -12,17 +12,32 @@ import {
   CDropdownToggle,
 } from '@coreui/react'
 import ReactSpeedometer from 'react-d3-speedometer'
-import tractors from 'src/data/tractor' // Importing the tractors data
-import statusFeatures from 'src/data/tractor-status-features' // Importing the status features data
+import tractors from 'src/data/tractor'
+import statusFeatures from 'src/data/tractor-status-features'
+import tractorMeasurements from 'src/data/tractorMeasurements.json' // Importing the tractor measurements data
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
   const navigate = useNavigate()
   const [selectedTractor, setSelectedTractor] = useState(tractorId || '')
+  const [latestData, setLatestData] = useState(null)
+
+  useEffect(() => {
+    // Filter out the latest data for the selected tractor
+    console.log(tractorMeasurements[0])
+    const currentTractor = tractorMeasurements.filter(
+      (tractor) => tractor.tractorId === parseInt(selectedTractor),
+    )
+
+    console.log('latest1:', currentTractor[currentTractor.length - 1])
+    setLatestData(currentTractor[currentTractor.length - 1])
+
+    console.log('latest:', latestData)
+  }, [selectedTractor])
 
   const handleTractorChange = (selectedId) => {
     setSelectedTractor(selectedId)
-    navigate(`/dashboard/vehicle/${id}`)
+    navigate(`/dashboard/vehicle/${selectedId}`)
   }
 
   const tractor = tractors.find((t) => t.id === parseInt(selectedTractor))
@@ -31,25 +46,30 @@ const VehicleDetails = () => {
     return <p>Tractor with ID {selectedTractor} not found.</p>
   }
 
-  const { owner, plateNumber, vehicleStatus } = tractor
+  const { owner, plateNumber } = tractor
   const title = `${owner}'s Tractor - ${plateNumber}`
 
   const getWarnings = (key, value) => {
     const warnings = []
+    console.log('key', key)
+    console.log('value', value)
     if (value.warn) {
-      if (value.warn.high !== undefined && vehicleStatus[key] > value.warn.high) {
+      console.log('warn', value.warn)
+      if (value.warn.high !== undefined && latestData.measurements[key] > value.warn.high) {
         warnings.push(`${value.name} is too high!`)
       }
-      if (value.warn.low !== undefined && vehicleStatus[key] < value.warn.low) {
+      if (value.warn.low !== undefined && latestData.measurements[key] < value.warn.low) {
         warnings.push(`${value.name} is too low!`)
       }
     }
+
     return warnings
   }
 
   const getTirePressureWarnings = (subKey, subValue) => {
     const warnings = []
-    const pressure = vehicleStatus.tirePressure[subKey]
+    const pressure = latestData.measurements.tirePressure[subKey]
+    console.log('subval:', subValue)
     if (subValue.warn.high !== undefined && pressure > subValue.warn.high) {
       warnings.push(`${subValue.name} pressure is too high!`)
     }
@@ -74,6 +94,27 @@ const VehicleDetails = () => {
       return undefined
     }
   }
+
+  // Render the component only when latestData is not null
+  if (!latestData) {
+    return null // or loading indicator
+  } else {
+    console.log('else:', latestData)
+  }
+
+  const date = new Date(latestData.timestamp)
+
+  // Format the date
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZoneName: 'short',
+  }
+  const formattedDate = date.toLocaleString('en-US', options)
 
   return (
     <>
@@ -104,6 +145,7 @@ const VehicleDetails = () => {
                 <h4 id="traffic" className="card-title mb-0">
                   {title} Details
                 </h4>
+                <h5>Time: {formattedDate}</h5>
               </CCol>
               <CDropdown style={{ marginBottom: 30 }}>
                 <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
@@ -132,8 +174,8 @@ const VehicleDetails = () => {
                         segmentColors={getSegmentColors('tirePressure')}
                         minValue={subValue.min}
                         maxValue={subValue.max}
-                        value={vehicleStatus.tirePressure[subKey]}
-                        currentValueText={`${subValue.name}: ${vehicleStatus.tirePressure[subKey]} ${statusFeatures.tirePressure.unit}`}
+                        value={latestData.measurements.tirePressure[subKey]}
+                        currentValueText={`${subValue.name}: ${latestData.measurements.tirePressure[subKey]} ${statusFeatures.tirePressure.unit}`}
                       />
                     </CCol>
                   ),
@@ -152,8 +194,8 @@ const VehicleDetails = () => {
                           segmentColors={getSegmentColors(key)}
                           minValue={value.min}
                           maxValue={value.max}
-                          value={vehicleStatus[key]}
-                          currentValueText={`${value.name}: ${vehicleStatus[key]} ${value.unit}`}
+                          value={latestData.measurements[key]}
+                          currentValueText={`${value.name}: ${latestData.measurements[key]} ${value.unit}`}
                         />
                       </CCol>
                     ),
