@@ -22,6 +22,7 @@ const Spinners = React.lazy(() => import('./views/base/spinners/Spinners'))
 const Tables = React.lazy(() => import('./views/base/tables/Tables'))
 const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 const Map = React.lazy(() => import('./views/base/map/Map'))
+const IOTDevice = React.lazy(() => import('./views/dashboard/IOTDevice'))
 
 // Buttons
 const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
@@ -57,6 +58,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard-template', name: 'Dashboard Template', element: Dashboard },
   { path: '/dashboard', name: 'Dashboard', element: DashboardVehicle },
+  { path: '/iot-devices', name: 'Map', element: IOTDevice },
   { path: '/dashboard/vehicle/:tractorId', name: 'Vehicle Details', element: VehicleDetails },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
