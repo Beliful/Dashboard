@@ -1,52 +1,29 @@
-import React, {useState} from "react";
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import './Map.css';
+import 'leaflet/dist/leaflet.css';
+
+const tractors = [
+  { id: 1, position: [39.1, 35.2], name: 'Tractor 1' },
+  { id: 2, position: [39.3, 35.4], name: 'Tractor 2' },
+  // Add more tractors as needed
+];
 
 const Map = () => {
   return (
-    <MapContainer center={[40, 0]} zoom={1} scrollWheelZoom={false}>
+    <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={false} style={{ height: "100vh", width: "100%" }}>
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        minZoom={1.6}
+        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
+      {tractors.map(tractor => (
+        <Marker key={tractor.id} position={tractor.position}>
+          <Popup>
+            {tractor.name}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }
 
-export default Map
-
-// const Map = () => {
-//   const [satellitePosition, setSatellitePosition] = useState(null);
-
-//   // Simulated satellite data for demonstration purposes
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       // Simulate fetching updated satellite position data
-//       const newSatellitePosition = {
-//         lat: Math.random() * 180 - 90, // Random latitude (-90 to 90)
-//         lng: Math.random() * 360 - 180 // Random longitude (-180 to 180)
-//       };
-//       setSatellitePosition(newSatellitePosition);
-//     }, 5000); // Update satellite position every 5 seconds
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   return (
-//     <MapContainer center={[0, 0]} zoom={1} style={{ height: "400px", width: "100%" }}>
-//       <TileLayer
-//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//       />
-//       {satellitePosition && (
-//         <Marker position={[satellitePosition.lat, satellitePosition.lng]}>
-//           {/* You can customize the marker icon to represent a satellite */}
-//           {/* <Icon icon={satelliteIcon} /> */}
-//         </Marker>
-//       )}
-//     </MapContainer>
-//   );
-// }
-
-// export default Map;
+export default Map;

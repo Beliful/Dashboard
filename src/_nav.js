@@ -27,6 +27,11 @@ const _nav = [
     },
   },
   {
+    component: CNavItem,
+    name: 'Map',
+    to: '/map',
+  },
+  {
     component: CNavTitle,
     name: 'Theme',
   },
@@ -121,12 +126,7 @@ const _nav = [
         component: CNavItem,
         name: 'Tooltips',
         to: '/base/tooltips',
-      },
-      {
-        component: CNavItem,
-        name: 'Map',
-        to: '/base/map',
-      },
+      }
     ],
   },
   {
