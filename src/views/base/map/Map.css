@@ -41,4 +41,12 @@
     width: 100%;
     height: 80vh;
   }
+
+  .custom-div-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Adjust font size if needed */
+    color: black; /* Change this to the color you prefer */
+  }
   
