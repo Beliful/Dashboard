@@ -36,6 +36,7 @@ const _nav = [
     name: 'Map',
     to: '/map',
     icon: <CIcon icon={cilMap} customClassName="nav-icon" />,
+  },  
   {
     component: CNavItem,
     name: 'IOT Devices',
