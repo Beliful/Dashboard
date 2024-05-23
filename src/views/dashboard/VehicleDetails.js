@@ -33,15 +33,12 @@ const VehicleDetails = () => {
 
   useEffect(() => {
     // Filter out the latest data for the selected tractor
-    console.log(tractorMeasurements[0])
     const currentTractor = tractorMeasurements.filter(
       (tractor) => tractor.tractorId === parseInt(selectedTractor),
     )
 
-    console.log('latest1:', currentTractor[currentTractor.length - 1])
     setLatestData(currentTractor[currentTractor.length - 1])
     setTractorData(currentTractor)
-    console.log('latest:', latestData)
   }, [selectedTractor])
 
   const handleTractorChange = (selectedId) => {
@@ -60,14 +57,17 @@ const VehicleDetails = () => {
 
   const getWarnings = (key, value) => {
     const warnings = []
-    console.log('key', key)
-    console.log('value', value)
     if (value.warn) {
-      console.log('warn', value.warn)
+      console.log('warn val:', value.warn)
+      console.log('latest mesasure:', latestData.measurements[key])
+      console.log('key:', key)
       if (value.warn.high !== undefined && latestData.measurements[key] > value.warn.high) {
+        console.log('helothere1')
         warnings.push(`${value.name} is too high!`)
       }
+
       if (value.warn.low !== undefined && latestData.measurements[key] < value.warn.low) {
+        console.log('helothere2')
         warnings.push(`${value.name} is too low!`)
       }
     }
@@ -78,7 +78,6 @@ const VehicleDetails = () => {
   const getTirePressureWarnings = (subKey, subValue) => {
     const warnings = []
     const pressure = latestData.measurements.tirePressure[subKey]
-    console.log('subval:', subValue)
     if (subValue.warn.high !== undefined && pressure > subValue.warn.high) {
       warnings.push(`${subValue.name} pressure is too high!`)
     }
@@ -107,8 +106,6 @@ const VehicleDetails = () => {
   // Render the component only when latestData is not null
   if (!latestData) {
     return null // or loading indicator
-  } else {
-    console.log('else:', latestData)
   }
 
   const date = new Date(latestData.timestamp)
@@ -158,21 +155,25 @@ const VehicleDetails = () => {
     <>
       <CRow>
         <CCol>
-          {Object.entries(statusFeatures).map(([key, value]) =>
-            key === 'tirePressure'
-              ? Object.entries(value.subFeatures).map(([subKey, subValue]) =>
-                  getTirePressureWarnings(subKey, subValue).map((warning, index) => (
-                    <CAlert color="danger" key={`${subKey}-warning-${index}`}>
-                      {warning}
-                    </CAlert>
-                  )),
-                )
-              : getWarnings(key, value).map((warning, index) => (
-                  <CAlert color="danger" key={`${key}-warning-${index}`}>
-                    {warning}
-                  </CAlert>
-                )),
-          )}
+          {Object.entries(statusFeatures).map(([key, value]) => {
+            return (
+              <React.Fragment key={key}>
+                {key === 'tirePressure'
+                  ? Object.entries(value.subFeatures).map(([subKey, subValue]) =>
+                      getTirePressureWarnings(subKey, subValue).map((warning, index) => (
+                        <CAlert color="danger" key={`${subKey}-warning-${index}`}>
+                          {warning}
+                        </CAlert>
+                      )),
+                    )
+                  : getWarnings(key, value).map((warning, index) => (
+                      <CAlert color="danger" key={`${key}-warning-${index}`}>
+                        {warning}
+                      </CAlert>
+                    ))}
+              </React.Fragment>
+            )
+          })}
         </CCol>
       </CRow>
       <CRow>
