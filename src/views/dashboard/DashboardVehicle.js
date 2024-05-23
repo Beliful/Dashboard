@@ -10,9 +10,12 @@ import {
   CCol,
   CRow,
   CTooltip,
+  CButtonGroup,
+  CCardFooter,
+  CProgress,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilWarning } from '@coreui/icons'
+import { cilWarning, cilCloudDownload } from '@coreui/icons'
 import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features' // Importing the status features data
 import { useNavigate } from 'react-router-dom'

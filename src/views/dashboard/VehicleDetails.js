@@ -10,17 +10,26 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
+  CButtonGroup,
+  CCardFooter,
+  CProgress,
+  CButton,
 } from '@coreui/react'
+import { getStyle } from '@coreui/utils'
+import CIcon from '@coreui/icons-react'
+import { cilWarning, cilCloudDownload } from '@coreui/icons'
 import ReactSpeedometer from 'react-d3-speedometer'
 import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features'
 import tractorMeasurements from 'src/data/tractorMeasurements.json' // Importing the tractor measurements data
+import VehicleFeatureChart from './VehicleFeatureChart'
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
   const navigate = useNavigate()
   const [selectedTractor, setSelectedTractor] = useState(tractorId || '')
   const [latestData, setLatestData] = useState(null)
+  const [tractorData, setTractorData] = useState(null)
 
   useEffect(() => {
     // Filter out the latest data for the selected tractor
@@ -31,7 +40,7 @@ const VehicleDetails = () => {
 
     console.log('latest1:', currentTractor[currentTractor.length - 1])
     setLatestData(currentTractor[currentTractor.length - 1])
-
+    setTractorData(currentTractor)
     console.log('latest:', latestData)
   }, [selectedTractor])
 
@@ -115,6 +124,35 @@ const VehicleDetails = () => {
     timeZoneName: 'short',
   }
   const formattedDate = date.toLocaleString('en-US', options)
+
+  const features = [
+    'speed',
+    'rpm',
+    'fuelConsumption',
+    'fuelLevel',
+    'engineOilLevel',
+    'engineTemperature',
+  ]
+
+  const formatChartData = (data, feature) => {
+    const labels = data.map((entry) => new Date(entry.timestamp).toLocaleString())
+    const dataset = data.map((entry) => parseFloat(entry.measurements[feature]))
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: feature,
+          backgroundColor: `rgba(${getStyle('--cui-info-rgb')}, .1)`,
+          borderColor: getStyle('--cui-info'),
+          pointHoverBackgroundColor: getStyle('--cui-info'),
+          borderWidth: 2,
+          data: dataset,
+          fill: true,
+        },
+      ],
+    }
+  }
 
   return (
     <>
@@ -205,6 +243,42 @@ const VehicleDetails = () => {
           </CCard>
         </CCol>
       </CRow>
+      <CCard className="mb-4">
+        <CCardBody>
+          <CRow>
+            <CCol sm={5}>
+              <h4 id="traffic" className="card-title mb-0">
+                Vehicle Data
+              </h4>
+              <div className="small text-body-secondary">January - July 2023</div>
+            </CCol>
+            <CCol sm={7} className="d-none d-md-block">
+              <CButton color="primary" className="float-end">
+                <CIcon icon={cilCloudDownload} />
+              </CButton>
+              <CButtonGroup className="float-end me-3">
+                {['Day', 'Month', 'Year'].map((value) => (
+                  <CButton
+                    color="outline-secondary"
+                    key={value}
+                    className="mx-0"
+                    active={value === 'Month'}
+                  >
+                    {value}
+                  </CButton>
+                ))}
+              </CButtonGroup>
+            </CCol>
+          </CRow>
+          {features.map((feature) => (
+            <VehicleFeatureChart
+              key={feature}
+              data={formatChartData(tractorData, feature)}
+              title={feature}
+            />
+          ))}
+        </CCardBody>
+      </CCard>
     </>
   )
 }
