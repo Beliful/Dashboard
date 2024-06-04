@@ -59,6 +59,7 @@ const routes = [
   { path: '/dashboard-template', name: 'Dashboard Template', element: Dashboard },
   { path: '/dashboard', name: 'Dashboard', element: DashboardVehicle },
   { path: '/iot-devices', name: 'Map', element: IOTDevice },
+  { path: '/iot-devices/:deviceId', name: 'Device', element: IOTDevice },
   { path: '/dashboard/vehicle/:tractorId', name: 'Vehicle Details', element: VehicleDetails },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },

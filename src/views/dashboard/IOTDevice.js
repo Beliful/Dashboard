@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CCol,
   CRow,
@@ -10,18 +10,63 @@ import {
   CCardText,
   CCardTitle,
 } from '@coreui/react'
-import iotDevices from 'src/data/iotDevice'
+import deviceData from 'src/data/devices.json'
+import iotDevices from 'src/data/iot-devices'
+import sensorTypes from 'src/data/iot-device-types'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
   const [selectedSensor, setSelectedSensor] = useState('humidity')
+  const navigate = useNavigate()
+  const [latestDeviceData, setLatestData] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    console.log('Fetching latest data for sensor:', selectedSensor)
+    const fetchLatestData = () => {
+      let latestData = []
+      iotDevices.forEach((device) => {
+        const currentDeviceData = deviceData.filter((measurement) => measurement.id === device.id)
+
+        if (currentDeviceData.length > 0) {
+          latestData.push(currentDeviceData[currentDeviceData.length - 1])
+        }
+
+        latestData = latestData.filter((device) => {
+          return device.sensorsData[selectedSensor] !== undefined
+        })
+      })
+
+      console.log('latest:', latestData)
+      setLatestData(latestData)
+      setLoading(false) // Set loading to false after data is fetched
+    }
+
+    fetchLatestData()
+  }, [selectedSensor])
+
+  const handleButtonClick = (id) => {
+    navigate(`/iot-devices/${id}`)
+  }
 
   const handleSensorChange = (e) => {
     setSelectedSensor(e.target.value)
+    setLoading(true)
   }
 
-  const filteredDevices = iotDevices.filter((device) => {
-    return device.sensorsData[selectedSensor] !== undefined
-  })
+  if (!latestDeviceData || isLoading) {
+    return null // or loading indicator
+  }
+
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZoneName: 'short',
+  }
 
   return (
     <>
@@ -38,24 +83,41 @@ const Dashboard = () => {
                       <option value="humidity">Humidity</option>
                       <option value="temperature">Temperature</option>
                       <option value="pressure">Pressure</option>
-                      {/* Add more options for other sensor types */}
                     </select>
                   </CCol>
                 </CRow>
                 <CRow>
-                  {filteredDevices.map((device) => (
+                  {latestDeviceData.map((device) => (
                     <CCol key={device.id} xs={12} sm={6} md={4} lg={3}>
                       <CCard style={{ marginBottom: '15px', marginTop: '15px' }}>
-                        <CCardImage orientation="top" src={device.imagePath} />{' '}
-                        {/* Display device image */}
+                        <CCardImage
+                          orientation="top"
+                          src={device.imagePath}
+                          style={{ height: '180px', objectFit: 'cover' }}
+                        />
                         <CCardBody>
-                          <CCardTitle>{device.name}</CCardTitle>
+                          <CCardTitle>Tarım - {selectedSensor}</CCardTitle>
                           <CCardText>
-                            <strong>{selectedSensor}:</strong> {device.sensorsData[selectedSensor]}
+                            <strong>Location</strong>
+                            <br />
+                            &nbsp;&nbsp;<strong>Latitude:</strong>{' '}
+                            {device.location.latitude.toFixed(4)}°
+                            <br />
+                            &nbsp;&nbsp;<strong>Longitude:</strong>{' '}
+                            {device.location.longitude.toFixed(4)}°
+                            <br />
+                            <br />
+                            <strong>Value:</strong> {device.sensorsData[selectedSensor].toFixed(3)}{' '}
+                            {sensorTypes[selectedSensor].unit}
+                            <br />
+                            <strong>Timestamp:</strong>{' '}
+                            {new Date(device.timestamp).toLocaleString('en-US', options)}
                           </CCardText>
                         </CCardBody>
                         <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-                          <CButton color="primary">View Details</CButton>
+                          <CButton color="primary" onClick={() => handleButtonClick(tractor.id)}>
+                            View Details
+                          </CButton>
                         </div>
                       </CCard>
                     </CCol>

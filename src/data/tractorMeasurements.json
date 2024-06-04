@@ -9057,8 +9057,8 @@
     "tractorId": 3,
     "timestamp": "2024-05-18T20:00:00.000Z",
     "measurements": {
-      "speed": "23.1",
-      "rpm": "3784.3",
+      "speed": "0",
+      "rpm": "0",
       "fuelConsumption": "11.1",
       "tirePressure": {
         "frontLeft": "26.1",

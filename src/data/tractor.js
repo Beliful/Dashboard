@@ -3,6 +3,7 @@ const tractors = [
     id: 1,
     owner: 'Michael Scott',
     driver: 'Jane Smith',
+    model: 'New Holland TD 90 D',
     location: {
       latitude: 34.052235,
       longitude: -118.243683,
@@ -28,6 +29,7 @@ const tractors = [
     id: 2,
     owner: 'Michael Scott',
     driver: 'Bob Brown',
+    model: 'Case JX 55 E',
     location: {
       latitude: 40.712776,
       longitude: -74.005974,
@@ -53,6 +55,7 @@ const tractors = [
     id: 3,
     owner: 'Michael Scott',
     driver: 'Dan White',
+    model: 'New Holland T7.315',
     location: {
       latitude: 51.507351,
       longitude: -0.127758,
@@ -78,6 +81,7 @@ const tractors = [
     id: 4,
     owner: 'Michael Scott',
     driver: 'Emma Brown',
+    model: 'New Holland TT55',
     location: {
       latitude: 48.856613,
       longitude: 2.352222,
@@ -103,6 +107,7 @@ const tractors = [
     id: 5,
     owner: 'Michael Scott',
     driver: 'Pam Beesly',
+    model: 'Case JX 55 E',
     location: {
       latitude: 41.878113,
       longitude: -87.629799,

@@ -90,11 +90,11 @@ const Dashboard = () => {
                       <CCard style={{ width: '18rem', position: 'relative' }}>
                         <CCardImage orientation="top" src={tractor.imagePath} />
                         <CCardBody>
-                          <CCardTitle>{tractor.owner}'s Tractor</CCardTitle>
+                          <CCardTitle>{tractor.model}</CCardTitle>
                           <CCardText>
-                            <strong>Driver:</strong> {tractor.driver}
-                            <br />
                             <strong>Plate Number:</strong> {tractor.plateNumber}
+                            <br />
+                            <strong>Driver:</strong> {tractor.driver}
                             <br />
                             <strong>Engine Status:</strong>{' '}
                             {latestStatus.measurements.rpm > 0 ? 'Running' : 'Stopped'}
