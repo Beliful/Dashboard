@@ -48,7 +48,7 @@ const Map = () => {
             position={[device.location.latitude, device.location.longitude]}
             icon={showTractors ? iconTruck : iconIOT}
           >
-            <Popup>{device.name}</Popup>
+            <Popup>{"device: " + device.id}</Popup>
           </Marker>
         ))}
       </MapContainer>

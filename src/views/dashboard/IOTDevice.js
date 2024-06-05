@@ -115,7 +115,7 @@ const Dashboard = () => {
                           </CCardText>
                         </CCardBody>
                         <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-                          <CButton color="primary" onClick={() => handleButtonClick(tractor.id)}>
+                          <CButton color="primary" onClick={() => handleButtonClick(device.id)}>
                             View Details
                           </CButton>
                         </div>
