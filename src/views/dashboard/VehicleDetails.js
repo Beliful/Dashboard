@@ -23,7 +23,6 @@ import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features'
 import tractorMeasurements from 'src/data/tractorMeasurements.json' // Importing the tractor measurements data
 import VehicleFeatureChart from './VehicleFeatureChart'
-import { generateData } from '../../data/iotDevice'
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
@@ -31,8 +30,6 @@ const VehicleDetails = () => {
   const [selectedTractor, setSelectedTractor] = useState(tractorId || '')
   const [latestData, setLatestData] = useState(null)
   const [tractorData, setTractorData] = useState(null)
-
-  generateData()
 
   useEffect(() => {
     // Filter out the latest data for the selected tractor
