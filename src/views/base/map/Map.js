@@ -10,7 +10,7 @@ import iotDevices from 'src/data/iot-devices' // Assuming you have IOT device da
 const iconTruck = new L.icon({
   iconUrl: imageTruck,
   iconSize: [30, 30],
-  iconAnchor: [22, 94],
+  iconAnchor: [15, 15],
   popupAnchor: [-3, -76],
 })
 

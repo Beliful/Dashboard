@@ -97,7 +97,7 @@ const Dashboard = () => {
                             <strong>Driver:</strong> {tractor.driver}
                             <br />
                             <strong>Engine Status:</strong>{' '}
-                            {latestStatus.measurements.rpm > 0 ? 'Running' : 'Stopped'}
+                            {latestStatus.measurements.rpm > 0 ? (latestStatus.measurements.speed > 0 ? 'Running' : "Idling") : 'Stopped'}
                             <br />
                             <strong>RPM:</strong> {latestStatus.measurements.rpm || 'N/A'}
                             <br />
