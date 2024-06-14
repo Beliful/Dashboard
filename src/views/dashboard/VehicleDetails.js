@@ -52,8 +52,8 @@ const VehicleDetails = () => {
     return <p>Tractor with ID {selectedTractor} not found.</p>
   }
 
-  const { owner, plateNumber } = tractor
-  const title = `${owner}'s Tractor - ${plateNumber}`
+  const { model } = tractor
+  const title = `${model}`
 
   const getWarnings = (key, value) => {
     const warnings = []
