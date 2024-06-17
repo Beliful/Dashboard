@@ -161,7 +161,7 @@ const Map = () => {
           </div>
         )}
       </div>
-      <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={false} style={{ height: '100%' }}>
+      <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={true} style={{ height: '90%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
