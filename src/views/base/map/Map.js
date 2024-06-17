@@ -9,7 +9,9 @@ import ReactDOMServer from 'react-dom/server'
 import { getVehicleColor } from '../../../const/colors'
 import { TractorStatus } from '../../../const/enums'
 import tractorMeasurements from 'src/util/tractorMeasurements'
+import deviceData from 'src/data/devices'
 import { useNavigate } from 'react-router-dom'
+import { formatDate } from '../../../util/formatDate'
 
 // Function to create a Leaflet icon from a React component
 const createCustomIcon = (icon, color) => {
@@ -54,11 +56,26 @@ const Map = () => {
     currentVehicleData['plateNumber'] = tractorInfo[0].plateNumber
     currentVehicleData['model'] = tractorInfo[0].model
 
-    console.log(currentVehicleData)
     return currentVehicleData
   }
 
-  const devices = showTractors ? tractors : iotDevices // Determine which devices to show based on state
+  const getLatestIoTData = (deviceId) => {
+    const currentDevice = deviceData.filter((device) => device.id === parseInt(deviceId))
+
+    const deviceInfo = iotDevices.filter((item) => item.id === deviceId)
+    // console.log(deviceInfo)
+
+    let currentDeviceData = currentDevice[currentDevice.length - 1]
+
+    // currentDeviceData['name'] = deviceInfo.name
+    // currentDeviceData['plateNumber'] = tractorInfo[0].plateNumber
+    // currentDeviceData['model'] = tractorInfo[0].model
+    console.log(currentDeviceData)
+    return currentDeviceData
+  }
+
+  const data = showTractors ? tractors : iotDevices // Determine which devices to show based on state
+  // console.log(data)
 
   return (
     <div style={{ height: '500px' }}>
@@ -70,17 +87,19 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
-        {devices.map((device) => {
+        {data.map((item) => {
           let currentVehicle = ''
+          let currentDevice = ''
 
           if (showTractors) {
-            currentVehicle = getLatestVehicleData(device.id)
-            console.log('status:0', currentVehicle.status)
+            currentVehicle = getLatestVehicleData(item.id)
+          } else {
+            currentDevice = getLatestIoTData(item.id)
           }
           return (
             <Marker
-              key={device.id}
-              position={[device.location.latitude, device.location.longitude]}
+              key={item.id}
+              position={[item.location.latitude, item.location.longitude]}
               icon={
                 showTractors
                   ? createCustomIcon(<Agriculture />, getVehicleColor(currentVehicle.status))
@@ -102,13 +121,43 @@ const Map = () => {
                     >
                       {currentVehicle.model}
                     </h5>
+                    <p style={{ fontStyle: 'italic', color: 'gray' }}>
+                      {formatDate(currentVehicle.timestamp)}
+                    </p>
                     <p>Plate Number: {currentVehicle.plateNumber}</p>
                     <p>Status: {currentVehicle.status}</p>
                     <p>Driver: {currentVehicle.driver}</p>
                     <p>RPM: {currentVehicle.measurements.rpm}</p>
                     <p>Speed: {currentVehicle.measurements.speed}</p>
                   </div>
-                ) : null}
+                ) : (
+                  <div
+                    style={{
+                      fontFamily: 'Arial, sans-serif',
+                      lineHeight: 0.6,
+                      borderRadius: '5px',
+                    }}
+                  >
+                    <h5
+                      style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black' }}
+                      onClick={() => navigate(`/iot-devices/${currentDevice.id}`)}
+                    >
+                      {currentDevice.name}
+                    </h5>
+                    <p style={{ fontStyle: 'italic', color: 'gray' }}>
+                      {formatDate(currentDevice.timestamp)}
+                    </p>
+                    {currentDevice.sensorsData.temperature ? (
+                      <p>Temperature: {currentDevice.sensorsData.temperature}</p>
+                    ) : null}
+                    {currentDevice.sensorsData.pressure ? (
+                      <p>Pressure: {currentDevice.sensorsData.pressure}</p>
+                    ) : null}
+                    {currentDevice.sensorsData.humidity ? (
+                      <p>Humidty: {currentDevice.sensorsData.humidity}</p>
+                    ) : null}
+                  </div>
+                )}
               </Popup>
             </Marker>
           )
