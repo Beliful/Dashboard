@@ -21,9 +21,10 @@ import { cilWarning, cilCloudDownload } from '@coreui/icons'
 import ReactSpeedometer from 'react-d3-speedometer'
 import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features'
-import tractorMeasurements from 'src/data/tractorMeasurements.json' // Importing the tractor measurements data
+import tractorMeasurements from 'src/util/tractorMeasurements.json' // Importing the tractor measurements data
 import VehicleFeatureChart from './VehicleFeatureChart'
 import { formatDate } from '../../util/formatDate'
+import TractorPathMap from './TractorPathMap'
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
@@ -42,6 +43,7 @@ const VehicleDetails = () => {
     setTractorData(currentTractor)
   }, [selectedTractor])
 
+  console.log('tractordata: ', tractorData)
   const handleTractorChange = (selectedId) => {
     setSelectedTractor(selectedId)
     navigate(`/dashboard/vehicle/${selectedId}`)
@@ -227,6 +229,7 @@ const VehicleDetails = () => {
                     ),
                 )}
               </CRow>
+              <TractorPathMap data={tractorData} />
             </CCardBody>
           </CCard>
         </CCol>

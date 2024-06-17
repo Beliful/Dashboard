@@ -5,27 +5,13 @@ import L from 'leaflet'
 import { Agriculture, RssFeed } from '@mui/icons-material'
 import tractors from 'src/data/tractor'
 import iotDevices from 'src/data/iot-devices'
-import ReactDOMServer from 'react-dom/server'
 import { getVehicleColor } from '../../../const/colors'
 import { TractorStatus } from '../../../const/enums'
 import tractorMeasurements from 'src/util/tractorMeasurements'
 import deviceData from 'src/data/devices'
 import { useNavigate } from 'react-router-dom'
 import { formatDate } from '../../../util/formatDate'
-
-// Function to create a Leaflet icon from a React component
-const createCustomIcon = (icon, color) => {
-  let svgString = ReactDOMServer.renderToString(icon)
-  svgString = svgString.replace(/<path/g, `<path fill="${color}"`) // set color of the icon
-
-  return new L.DivIcon({
-    html: svgString,
-    className: 'custom-icon',
-    iconSize: [30, 30],
-    iconAnchor: [15, 15],
-    popupAnchor: [0, -15],
-  })
-}
+import { createCustomIcon } from '../../../util/createLeafletIcon'
 
 const Map = () => {
   const [showTractors, setShowTractors] = useState(true)
@@ -41,8 +27,6 @@ const Map = () => {
     )
 
     const tractorInfo = tractors.filter((item) => item.id === vehicleId)
-
-    // console.log(tractorInfo[0])
 
     let currentVehicleData = currentTractor[currentTractor.length - 1]
     currentVehicleData['status'] =
@@ -62,27 +46,17 @@ const Map = () => {
   const getLatestIoTData = (deviceId) => {
     const currentDevice = deviceData.filter((device) => device.id === parseInt(deviceId))
 
-    const deviceInfo = iotDevices.filter((item) => item.id === deviceId)
-    // console.log(deviceInfo)
-
     let currentDeviceData = currentDevice[currentDevice.length - 1]
-
-    // currentDeviceData['name'] = deviceInfo.name
-    // currentDeviceData['plateNumber'] = tractorInfo[0].plateNumber
-    // currentDeviceData['model'] = tractorInfo[0].model
     console.log(currentDeviceData)
     return currentDeviceData
   }
 
   const data = showTractors ? tractors : iotDevices // Determine which devices to show based on state
-  // console.log(data)
 
   return (
     <div style={{ height: '500px' }}>
-      {/* Ensure the container has a height */}
       <button onClick={toggleDevices}>{showTractors ? 'Show IOT Devices' : 'Show Tractors'}</button>
       <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={false} style={{ height: '100%' }}>
-        {/* Set height for the MapContainer */}
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
