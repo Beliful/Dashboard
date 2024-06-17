@@ -9,6 +9,7 @@ import ReactDOMServer from 'react-dom/server'
 import { getVehicleColor } from '../../../const/colors'
 import { TractorStatus } from '../../../const/enums'
 import tractorMeasurements from 'src/util/tractorMeasurements'
+import { Box } from '@mui/material'
 
 // Function to create a Leaflet icon from a React component
 const createCustomIcon = (icon, color) => {
@@ -36,6 +37,10 @@ const Map = () => {
       (tractor) => tractor.tractorId === parseInt(vehicleId),
     )
 
+    const tractorInfo = tractors.filter((item) => item.id === vehicleId)
+
+    // console.log(tractorInfo[0])
+
     let currentVehicleData = currentTractor[currentTractor.length - 1]
     currentVehicleData['status'] =
       currentVehicleData.measurements.rpm == 0
@@ -43,6 +48,10 @@ const Map = () => {
         : currentVehicleData.measurements.speed == 0
           ? TractorStatus.IDLING
           : TractorStatus.RUNNING
+
+    currentVehicleData['driver'] = tractorInfo[0].driver
+    currentVehicleData['plateNumber'] = tractorInfo[0].plateNumber
+    currentVehicleData['model'] = tractorInfo[0].model
 
     console.log(currentVehicleData)
     return currentVehicleData
@@ -65,6 +74,7 @@ const Map = () => {
 
           if (showTractors) {
             currentVehicle = getLatestVehicleData(device.id)
+            console.log('status:0', currentVehicle.status)
           }
           return (
             <Marker
@@ -76,7 +86,18 @@ const Map = () => {
                   : createCustomIcon(<RssFeed />, 'black')
               }
             >
-              <Popup>{`Device: ${device.id}`}</Popup>
+              <Popup>
+                <div
+                  style={{ fontFamily: 'Arial, sans-serif', lineHeight: 0.6, borderRadius: '5px' }}
+                >
+                  <h5>{`${currentVehicle.model}`}</h5>
+                  <p>Plate Number: {currentVehicle.plateNumber}</p>
+                  <p>Status: {currentVehicle.status}</p>
+                  <p>Driver: {currentVehicle.driver}</p>
+                  <p>RPM: {currentVehicle.measurements.rpm}</p>
+                  <p>Speed: {currentVehicle.measurements.speed}</p>
+                </div>
+              </Popup>
             </Marker>
           )
         })}
