@@ -100,14 +100,12 @@ const Dashboard = () => {
                           <CCardText>
                             <strong>Location</strong>
                             <br />
-                            &nbsp;&nbsp;<strong>Latitude:</strong>{' '}
-                            {device.location.latitude.toFixed(4)}°
+                            &nbsp;&nbsp;<strong>Latitude:</strong> {device.location.latitude}°
                             <br />
-                            &nbsp;&nbsp;<strong>Longitude:</strong>{' '}
-                            {device.location.longitude.toFixed(4)}°
+                            &nbsp;&nbsp;<strong>Longitude:</strong> {device.location.longitude}°
                             <br />
                             <br />
-                            <strong>Value:</strong> {device.sensorsData[selectedSensor].toFixed(3)}{' '}
+                            <strong>Value:</strong> {device.sensorsData[selectedSensor]}{' '}
                             {sensorTypes[selectedSensor].unit}
                             <br />
                             <strong>Timestamp:</strong>{' '}

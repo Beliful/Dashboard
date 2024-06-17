@@ -3,3 +3,9 @@ export const TractorStatus = {
   IDLING: 'Idling',
   RUNNING: 'Running',
 }
+
+export const SensorTypes = {
+  PRESSURE: 'pressure',
+  TEMPERATURE: 'temperature',
+  HUMIDITY: 'humidity',
+}

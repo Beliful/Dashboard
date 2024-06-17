@@ -8,22 +8,34 @@ import iotDevices from 'src/data/iot-devices'
 import tractorMeasurements from 'src/util/tractorMeasurements'
 import deviceData from 'src/data/devices'
 import { getVehicleColor } from '../../../const/colors'
-import { TractorStatus } from '../../../const/enums'
+import { TractorStatus, SensorTypes } from '../../../const/enums'
 import { formatDate } from '../../../util/formatDate'
 import { createCustomIcon } from '../../../util/createLeafletIcon'
 import { borderColor } from '@mui/system'
+import sensorTypes from '../../../data/iot-device-types'
 
 const Map = () => {
   const [showTractors, setShowTractors] = useState(true)
-  const [selectedStatuses, setSelectedStatuses] = useState(Object.values(TractorStatus)) // All statuses selected initially
+  const [selectedVehicleStatuses, setSelectedVehicleStatuses] = useState(
+    Object.values(TractorStatus),
+  ) // All statuses selected initially
+  const [selectedDeviceStatuses, setSelectedDeviceStatuses] = useState(Object.values(SensorTypes))
   const navigate = useNavigate()
 
   const toggleDevices = () => {
     setShowTractors(!showTractors)
   }
 
-  const handleStatusChange = (status) => {
-    setSelectedStatuses((prevStatuses) =>
+  const handleVehicleStatusChange = (status) => {
+    setSelectedVehicleStatuses((prevStatuses) =>
+      prevStatuses.includes(status)
+        ? prevStatuses.filter((s) => s !== status)
+        : [...prevStatuses, status],
+    )
+  }
+
+  const handleDeviceStatusChange = (status) => {
+    setSelectedDeviceStatuses((prevStatuses) =>
       prevStatuses.includes(status)
         ? prevStatuses.filter((s) => s !== status)
         : [...prevStatuses, status],
@@ -62,10 +74,16 @@ const Map = () => {
 
   const filteredTractors = tractors.filter((tractor) => {
     const vehicleData = getLatestVehicleData(tractor.id)
-    return selectedStatuses.includes(vehicleData.status)
+    return selectedVehicleStatuses.includes(vehicleData.status)
   })
 
-  const data = showTractors ? filteredTractors : iotDevices
+  const filteredDevices = iotDevices.filter((device) => {
+    const deviceData = getLatestIoTData(device.id)
+    const sensorTypes = Object.keys(deviceData.sensorsData)
+    return selectedDeviceStatuses.some((status) => sensorTypes.includes(status))
+  })
+
+  const data = showTractors ? filteredTractors : filteredDevices
 
   return (
     <div style={{ height: '500px' }}>
@@ -73,39 +91,75 @@ const Map = () => {
         <button onClick={toggleDevices}>
           {showTractors ? 'Show IOT Devices' : 'Show Tractors'}
         </button>
-        <div>
-          <label
-            style={{
-              padding: '2px 10px',
-            }}
-          >
-            Filter by status{' '}
-          </label>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              flexDirection: 'row',
-              borderColor: 'red',
-            }}
-          >
-            {Object.values(TractorStatus).map((status) => (
-              <label
-                key={status}
-                style={{
-                  padding: '2px 10px',
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedStatuses.includes(status)}
-                  onChange={() => handleStatusChange(status)}
-                />
-                {status}
-              </label>
-            ))}
+        {showTractors ? (
+          <div>
+            <label
+              style={{
+                padding: '2px 10px',
+              }}
+            >
+              Filter by status{' '}
+            </label>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                flexDirection: 'row',
+                borderColor: 'red',
+              }}
+            >
+              {Object.values(TractorStatus).map((status) => (
+                <label
+                  key={status}
+                  style={{
+                    padding: '2px 10px',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedVehicleStatuses.includes(status)}
+                    onChange={() => handleVehicleStatusChange(status)}
+                  />
+                  {status}
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <label
+              style={{
+                padding: '2px 10px',
+              }}
+            >
+              Filter by sensors{' '}
+            </label>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                flexDirection: 'row',
+                borderColor: 'red',
+              }}
+            >
+              {Object.values(SensorTypes).map((status) => (
+                <label
+                  key={status}
+                  style={{
+                    padding: '2px 10px',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedDeviceStatuses.includes(status)}
+                    onChange={() => handleDeviceStatusChange(status)}
+                  />
+                  {status}
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={false} style={{ height: '100%' }}>
         <TileLayer
@@ -174,13 +228,22 @@ const Map = () => {
                       {formatDate(currentDevice.timestamp)}
                     </p>
                     {currentDevice.sensorsData.temperature && (
-                      <p>Temperature: {currentDevice.sensorsData.temperature}</p>
+                      <p>
+                        Temperature: {currentDevice.sensorsData.temperature}
+                        {sensorTypes[SensorTypes.TEMPERATURE].unit}
+                      </p>
                     )}
                     {currentDevice.sensorsData.pressure && (
-                      <p>Pressure: {currentDevice.sensorsData.pressure}</p>
+                      <p>
+                        Pressure: {currentDevice.sensorsData.pressure}
+                        {sensorTypes[SensorTypes.PRESSURE].unit}
+                      </p>
                     )}
                     {currentDevice.sensorsData.humidity && (
-                      <p>Humidity: {currentDevice.sensorsData.humidity}</p>
+                      <p>
+                        Humidity: {currentDevice.sensorsData.humidity}
+                        {sensorTypes[SensorTypes.HUMIDITY].unit}
+                      </p>
                     )}
                   </div>
                 )}

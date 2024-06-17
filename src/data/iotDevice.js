@@ -19,7 +19,7 @@ const iotDevices = [
   {
     id: 1,
     location: { latitude: 41.0082, longitude: 28.9784 },
-    sensors: ['temperature', 'pressure'],
+    sensors: [, 'pressure'],
   },
   { id: 2, location: { latitude: 38.4192, longitude: 27.1287 }, sensors: ['temperature'] },
   {
@@ -61,7 +61,7 @@ const iotDevices = [
   {
     id: 15,
     location: { latitude: 38.4195, longitude: 27.1287 },
-    sensors: ['temperature', 'pressure'],
+    sensors: ['temperature'],
   },
   {
     id: 16,
@@ -162,7 +162,7 @@ const iotDevices = [
   {
     id: 48,
     location: { latitude: 38.4193, longitude: 32.1207 },
-    sensors: ['humidity', 'temperature'],
+    sensors: ['humidity'],
   },
   {
     id: 49,
@@ -181,7 +181,7 @@ const deviceImages = [
 ]
 
 const generateRandomNumber = (min, max) => {
-  return Math.random() * (max - min) + min
+  return (Math.random() * (max - min) + min).toFixed(1)
 }
 
 const generateDateRange = (startDate, days) => {
