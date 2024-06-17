@@ -1,24 +1,33 @@
 import React, { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
 import { Agriculture, RssFeed } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 import tractors from 'src/data/tractor'
 import iotDevices from 'src/data/iot-devices'
-import { getVehicleColor } from '../../../const/colors'
-import { TractorStatus } from '../../../const/enums'
 import tractorMeasurements from 'src/util/tractorMeasurements'
 import deviceData from 'src/data/devices'
-import { useNavigate } from 'react-router-dom'
+import { getVehicleColor } from '../../../const/colors'
+import { TractorStatus } from '../../../const/enums'
 import { formatDate } from '../../../util/formatDate'
 import { createCustomIcon } from '../../../util/createLeafletIcon'
+import { borderColor } from '@mui/system'
 
 const Map = () => {
   const [showTractors, setShowTractors] = useState(true)
+  const [selectedStatuses, setSelectedStatuses] = useState(Object.values(TractorStatus)) // All statuses selected initially
   const navigate = useNavigate()
 
   const toggleDevices = () => {
     setShowTractors(!showTractors)
+  }
+
+  const handleStatusChange = (status) => {
+    setSelectedStatuses((prevStatuses) =>
+      prevStatuses.includes(status)
+        ? prevStatuses.filter((s) => s !== status)
+        : [...prevStatuses, status],
+    )
   }
 
   const getLatestVehicleData = (vehicleId) => {
@@ -36,6 +45,8 @@ const Map = () => {
           ? TractorStatus.IDLING
           : TractorStatus.RUNNING
 
+    console.log(currentVehicleData)
+
     currentVehicleData['driver'] = tractorInfo[0].driver
     currentVehicleData['plateNumber'] = tractorInfo[0].plateNumber
     currentVehicleData['model'] = tractorInfo[0].model
@@ -45,17 +56,57 @@ const Map = () => {
 
   const getLatestIoTData = (deviceId) => {
     const currentDevice = deviceData.filter((device) => device.id === parseInt(deviceId))
-
     let currentDeviceData = currentDevice[currentDevice.length - 1]
-    console.log(currentDeviceData)
     return currentDeviceData
   }
 
-  const data = showTractors ? tractors : iotDevices // Determine which devices to show based on state
+  const filteredTractors = tractors.filter((tractor) => {
+    const vehicleData = getLatestVehicleData(tractor.id)
+    return selectedStatuses.includes(vehicleData.status)
+  })
+
+  const data = showTractors ? filteredTractors : iotDevices
 
   return (
     <div style={{ height: '500px' }}>
-      <button onClick={toggleDevices}>{showTractors ? 'Show IOT Devices' : 'Show Tractors'}</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <button onClick={toggleDevices}>
+          {showTractors ? 'Show IOT Devices' : 'Show Tractors'}
+        </button>
+        <div>
+          <label
+            style={{
+              padding: '2px 10px',
+            }}
+          >
+            Filter by status{' '}
+          </label>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              flexDirection: 'row',
+              borderColor: 'red',
+            }}
+          >
+            {Object.values(TractorStatus).map((status) => (
+              <label
+                key={status}
+                style={{
+                  padding: '2px 10px',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedStatuses.includes(status)}
+                  onChange={() => handleStatusChange(status)}
+                />
+                {status}
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
       <MapContainer center={[39, 35]} zoom={6} scrollWheelZoom={false} style={{ height: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -70,6 +121,7 @@ const Map = () => {
           } else {
             currentDevice = getLatestIoTData(item.id)
           }
+
           return (
             <Marker
               key={item.id}
@@ -121,15 +173,15 @@ const Map = () => {
                     <p style={{ fontStyle: 'italic', color: 'gray' }}>
                       {formatDate(currentDevice.timestamp)}
                     </p>
-                    {currentDevice.sensorsData.temperature ? (
+                    {currentDevice.sensorsData.temperature && (
                       <p>Temperature: {currentDevice.sensorsData.temperature}</p>
-                    ) : null}
-                    {currentDevice.sensorsData.pressure ? (
+                    )}
+                    {currentDevice.sensorsData.pressure && (
                       <p>Pressure: {currentDevice.sensorsData.pressure}</p>
-                    ) : null}
-                    {currentDevice.sensorsData.humidity ? (
-                      <p>Humidty: {currentDevice.sensorsData.humidity}</p>
-                    ) : null}
+                    )}
+                    {currentDevice.sensorsData.humidity && (
+                      <p>Humidity: {currentDevice.sensorsData.humidity}</p>
+                    )}
                   </div>
                 )}
               </Popup>
