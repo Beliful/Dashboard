@@ -1,62 +1,36 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import { Agriculture, RssFeed } from '@mui/icons-material';
-import tractors from 'src/data/tractor'; // Assuming you have tractor data
-import iotDevices from 'src/data/iot-devices'; // Assuming you have IOT device data
-import ReactDOMServer from 'react-dom/server';
+import React, { useState } from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
+import { Agriculture, RssFeed } from '@mui/icons-material'
+import tractors from 'src/data/tractor' // Assuming you have tractor data
+import iotDevices from 'src/data/iot-devices' // Assuming you have IOT device data
+import ReactDOMServer from 'react-dom/server'
 
 // Function to create a Leaflet icon from a React component
-const createCustomIcon = (icon) => {
+const createCustomIcon = (icon, color) => {
+  let svgString = ReactDOMServer.renderToString(icon)
+  svgString = svgString.replace(/<path/g, `<path fill="${color}"`)
+
+  console.log(svgString)
+
   return new L.DivIcon({
-    html: `<span style="${markerHtmlStyles}" />`,
-    className: '',
+    html: svgString,
+    className: 'custom-icon',
     iconSize: [30, 30],
     iconAnchor: [15, 15],
     popupAnchor: [0, -15],
-  });
-};
-
-const myCustomColour = '#583470'
-
-const markerHtmlStyles = `
-  background-color: ${myCustomColour};
-  width: 3rem;
-  height: 3rem;
-  display: block;
-  `
-
-const icon = new L.divIcon({
-  className: "my-custom-pin",
-  iconAnchor: [0, 24],
-  labelAnchor: [-6, 0],
-  popupAnchor: [0, -36],
-  html: `<span style="${markerHtmlStyles}" />`
-})
-
-const tractorIcon = L.divIcon({
-  className: 'custom-marker',
-  html: '<span class="material-icons" style="color: green;">agriculture</span>',
-  iconSize: [30, 30],
-  iconAnchor: [15, 30],
-});
-
-const iotIcon = L.divIcon({
-  className: 'custom-marker',
-  html: '<span class="material-icons" style="color: blue;">rss_feed</span>',
-  iconSize: [30, 30],
-  iconAnchor: [15, 30],
-});
+  })
+}
 
 const Map = () => {
-  const [showTractors, setShowTractors] = useState(true); // State to toggle between tractors and IOT devices
+  const [showTractors, setShowTractors] = useState(true) // State to toggle between tractors and IOT devices
 
   const toggleDevices = () => {
-    setShowTractors(!showTractors);
-  };
+    setShowTractors(!showTractors)
+  }
 
-  const devices = showTractors ? tractors : iotDevices; // Determine which devices to show based on state
+  const devices = showTractors ? tractors : iotDevices // Determine which devices to show based on state
 
   return (
     <div style={{ height: '500px' }}>
@@ -72,14 +46,18 @@ const Map = () => {
           <Marker
             key={device.id}
             position={[device.location.latitude, device.location.longitude]}
-            icon={showTractors ? tractorIcon : createCustomIcon(<RssFeed style={{ color: 'blue' }} />)}
+            icon={
+              showTractors
+                ? createCustomIcon(<Agriculture />, 'green')
+                : createCustomIcon(<RssFeed />, 'pink')
+            }
           >
             <Popup>{`Device: ${device.id}`}</Popup>
           </Marker>
         ))}
       </MapContainer>
     </div>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map
