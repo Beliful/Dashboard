@@ -9,7 +9,7 @@ import ReactDOMServer from 'react-dom/server'
 import { getVehicleColor } from '../../../const/colors'
 import { TractorStatus } from '../../../const/enums'
 import tractorMeasurements from 'src/util/tractorMeasurements'
-import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 // Function to create a Leaflet icon from a React component
 const createCustomIcon = (icon, color) => {
@@ -27,6 +27,7 @@ const createCustomIcon = (icon, color) => {
 
 const Map = () => {
   const [showTractors, setShowTractors] = useState(true)
+  const navigate = useNavigate()
 
   const toggleDevices = () => {
     setShowTractors(!showTractors)
@@ -87,16 +88,27 @@ const Map = () => {
               }
             >
               <Popup>
-                <div
-                  style={{ fontFamily: 'Arial, sans-serif', lineHeight: 0.6, borderRadius: '5px' }}
-                >
-                  <h5>{`${currentVehicle.model}`}</h5>
-                  <p>Plate Number: {currentVehicle.plateNumber}</p>
-                  <p>Status: {currentVehicle.status}</p>
-                  <p>Driver: {currentVehicle.driver}</p>
-                  <p>RPM: {currentVehicle.measurements.rpm}</p>
-                  <p>Speed: {currentVehicle.measurements.speed}</p>
-                </div>
+                {showTractors ? (
+                  <div
+                    style={{
+                      fontFamily: 'Arial, sans-serif',
+                      lineHeight: 0.6,
+                      borderRadius: '5px',
+                    }}
+                  >
+                    <h5
+                      style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black' }}
+                      onClick={() => navigate(`/dashboard/vehicle/${currentVehicle.tractorId}`)}
+                    >
+                      {currentVehicle.model}
+                    </h5>
+                    <p>Plate Number: {currentVehicle.plateNumber}</p>
+                    <p>Status: {currentVehicle.status}</p>
+                    <p>Driver: {currentVehicle.driver}</p>
+                    <p>RPM: {currentVehicle.measurements.rpm}</p>
+                    <p>Speed: {currentVehicle.measurements.speed}</p>
+                  </div>
+                ) : null}
               </Popup>
             </Marker>
           )
