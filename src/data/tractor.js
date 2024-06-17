@@ -4,8 +4,8 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Jane Smith',
     location: {
-      latitude: 36.9334, // Initial location in Turkey (Ankara)
-      longitude: 32.8597,
+      latitude: 36.932594950867966,
+      longitude: 32.857539458515696,
     },
     plateNumber: '34 ABC 123',
     imagePath: 'src/assets/images/tractor1.png',
@@ -29,8 +29,8 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Bob Brown',
     location: {
-      latitude: 36.712776,
-      longitude: 34.005974,
+      latitude: 36.70879710644043,
+      longitude: 34.00942322451533,
     },
     plateNumber: '35 ABD 456',
     imagePath: 'src/assets/images/tractor2.png',
@@ -54,8 +54,8 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Dan White',
     location: {
-      latitude: 36.507351,
-      longitude: 32.127758,
+      latitude: 36.5110758444228,
+      longitude: 32.122845484093595,
     },
     plateNumber: '06 ASD 789',
     imagePath: 'src/assets/images/tractor1.png',
@@ -79,8 +79,8 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Emma Brown',
     location: {
-      latitude: 36.856613,
-      longitude: 35.352222,
+      latitude: 36.852447477775385,
+      longitude: 35.35313847047025,
     },
     plateNumber: '34 DEF 012',
     imagePath: 'src/assets/images/tractor1.png',
@@ -104,8 +104,8 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Pam Beesly',
     location: {
-      latitude: 36.878113,
-      longitude: 32.629799,
+      latitude: 36.87596137682607,
+      longitude: 32.62540173317867,
     },
     plateNumber: '35 GHI 345',
     imagePath: 'src/assets/images/tractor2.png',

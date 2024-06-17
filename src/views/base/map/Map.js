@@ -3,16 +3,17 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { Agriculture, RssFeed } from '@mui/icons-material'
-import tractors from 'src/data/tractor' // Assuming you have tractor data
-import iotDevices from 'src/data/iot-devices' // Assuming you have IOT device data
+import tractors from 'src/data/tractor'
+import iotDevices from 'src/data/iot-devices'
 import ReactDOMServer from 'react-dom/server'
+import { getVehicleColor } from '../../../const/colors'
+import { TractorStatus } from '../../../const/enums'
+import tractorMeasurements from 'src/util/tractorMeasurements'
 
 // Function to create a Leaflet icon from a React component
 const createCustomIcon = (icon, color) => {
   let svgString = ReactDOMServer.renderToString(icon)
-  svgString = svgString.replace(/<path/g, `<path fill="${color}"`)
-
-  console.log(svgString)
+  svgString = svgString.replace(/<path/g, `<path fill="${color}"`) // set color of the icon
 
   return new L.DivIcon({
     html: svgString,
@@ -24,10 +25,27 @@ const createCustomIcon = (icon, color) => {
 }
 
 const Map = () => {
-  const [showTractors, setShowTractors] = useState(true) // State to toggle between tractors and IOT devices
+  const [showTractors, setShowTractors] = useState(true)
 
   const toggleDevices = () => {
     setShowTractors(!showTractors)
+  }
+
+  const getLatestVehicleData = (vehicleId) => {
+    const currentTractor = tractorMeasurements.filter(
+      (tractor) => tractor.tractorId === parseInt(vehicleId),
+    )
+
+    let currentVehicleData = currentTractor[currentTractor.length - 1]
+    currentVehicleData['status'] =
+      currentVehicleData.measurements.rpm == 0
+        ? TractorStatus.STOPPED
+        : currentVehicleData.measurements.speed == 0
+          ? TractorStatus.IDLING
+          : TractorStatus.RUNNING
+
+    console.log(currentVehicleData)
+    return currentVehicleData
   }
 
   const devices = showTractors ? tractors : iotDevices // Determine which devices to show based on state
@@ -42,19 +60,26 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
-        {devices.map((device) => (
-          <Marker
-            key={device.id}
-            position={[device.location.latitude, device.location.longitude]}
-            icon={
-              showTractors
-                ? createCustomIcon(<Agriculture />, 'green')
-                : createCustomIcon(<RssFeed />, 'pink')
-            }
-          >
-            <Popup>{`Device: ${device.id}`}</Popup>
-          </Marker>
-        ))}
+        {devices.map((device) => {
+          let currentVehicle = ''
+
+          if (showTractors) {
+            currentVehicle = getLatestVehicleData(device.id)
+          }
+          return (
+            <Marker
+              key={device.id}
+              position={[device.location.latitude, device.location.longitude]}
+              icon={
+                showTractors
+                  ? createCustomIcon(<Agriculture />, getVehicleColor(currentVehicle.status))
+                  : createCustomIcon(<RssFeed />, 'black')
+              }
+            >
+              <Popup>{`Device: ${device.id}`}</Popup>
+            </Marker>
+          )
+        })}
       </MapContainer>
     </div>
   )
