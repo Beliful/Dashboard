@@ -21,8 +21,10 @@ import { cilWarning, cilCloudDownload } from '@coreui/icons'
 import ReactSpeedometer from 'react-d3-speedometer'
 import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features'
-import tractorMeasurements from 'src/data/tractorMeasurements.json' // Importing the tractor measurements data
+import tractorMeasurements from 'src/util/tractorMeasurements.json' // Importing the tractor measurements data
 import VehicleFeatureChart from './VehicleFeatureChart'
+import { formatDate } from '../../util/formatDate'
+import TractorPathMap from './TractorPathMap'
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
@@ -41,6 +43,7 @@ const VehicleDetails = () => {
     setTractorData(currentTractor)
   }, [selectedTractor])
 
+  console.log('tractordata: ', tractorData)
   const handleTractorChange = (selectedId) => {
     setSelectedTractor(selectedId)
     navigate(`/dashboard/vehicle/${selectedId}`)
@@ -108,20 +111,6 @@ const VehicleDetails = () => {
     return null // or loading indicator
   }
 
-  const date = new Date(latestData.timestamp)
-
-  // Format the date
-  const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    timeZoneName: 'short',
-  }
-  const formattedDate = date.toLocaleString('en-US', options)
-
   const features = [
     'speed',
     'rpm',
@@ -184,7 +173,7 @@ const VehicleDetails = () => {
                 <h4 id="traffic" className="card-title mb-0">
                   {title} Details
                 </h4>
-                <h5>Time: {formattedDate}</h5>
+                <h5>Time: {formatDate(latestData.timestamp)}</h5>
               </CCol>
               <CDropdown style={{ marginBottom: 30 }}>
                 <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
@@ -240,6 +229,7 @@ const VehicleDetails = () => {
                     ),
                 )}
               </CRow>
+              <TractorPathMap data={tractorData} />
             </CCardBody>
           </CCard>
         </CCol>

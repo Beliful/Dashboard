@@ -15,7 +15,7 @@ import CIcon from '@coreui/icons-react'
 import { cilWarning } from '@coreui/icons'
 import tractors from 'src/data/tractor'
 import statusFeatures from 'src/data/tractor-status-features'
-import tractorMeasurements from 'src/data/tractorMeasurements.json'
+import tractorMeasurements from 'src/util/tractorMeasurements.json'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
@@ -97,7 +97,11 @@ const Dashboard = () => {
                             <strong>Driver:</strong> {tractor.driver}
                             <br />
                             <strong>Engine Status:</strong>{' '}
-                            {latestStatus.measurements.rpm > 0 ? 'Running' : 'Stopped'}
+                            {latestStatus.measurements.rpm > 0
+                              ? latestStatus.measurements.speed > 0
+                                ? 'Running'
+                                : 'Idling'
+                              : 'Stopped'}
                             <br />
                             <strong>RPM:</strong> {latestStatus.measurements.rpm || 'N/A'}
                             <br />

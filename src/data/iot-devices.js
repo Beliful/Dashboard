@@ -19,7 +19,7 @@ const iotDevices = [
   {
     id: 6,
     location: { latitude: 38.4096, longitude: 27.1287 },
-    sensors: ['humidity', 'temperature'],
+    sensors: ['humidity'],
   },
   { id: 7, location: { latitude: 38.4041, longitude: 27.1287 }, sensors: ['pressure'] },
   {
@@ -91,7 +91,7 @@ const iotDevices = [
   {
     id: 30,
     location: { latitude: 38.4168, longitude: 27.1287 },
-    sensors: ['pressure', 'temperature'],
+    sensors: ['temperature'],
   },
   {
     id: 31,
