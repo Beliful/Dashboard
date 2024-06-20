@@ -19,11 +19,11 @@ import { getStyle } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 import { cilWarning, cilCloudDownload } from '@coreui/icons'
 import ReactSpeedometer from 'react-d3-speedometer'
-import tractors from 'src/data/tractor'
-import statusFeatures from 'src/data/tractor-status-features'
-import tractorMeasurements from 'src/util/tractorMeasurements.json' // Importing the tractor measurements data
+import tractors from 'src/turktraktor/data/tractor'
+import statusFeatures from 'src/turktraktor/data/tractor-status-features'
+import tractorMeasurements from 'src/turktraktor/util/tractorMeasurements.json' // Importing the tractor measurements data
 import VehicleFeatureChart from './VehicleFeatureChart'
-import { formatDate } from '../../util/formatDate'
+import { formatDate } from '../../turktraktor/util/formatDate'
 import TractorPathMap from './TractorPathMap'
 
 const VehicleDetails = () => {
@@ -46,7 +46,7 @@ const VehicleDetails = () => {
   console.log('tractordata: ', tractorData)
   const handleTractorChange = (selectedId) => {
     setSelectedTractor(selectedId)
-    navigate(`/dashboard/vehicle/${selectedId}`)
+    navigate(`/turktraktor/dashboard/vehicle/${selectedId}`)
   }
 
   const tractor = tractors.find((t) => t.id === parseInt(selectedTractor))

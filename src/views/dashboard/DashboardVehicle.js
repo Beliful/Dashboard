@@ -13,9 +13,9 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilWarning } from '@coreui/icons'
-import tractors from 'src/data/tractor'
-import statusFeatures from 'src/data/tractor-status-features'
-import tractorMeasurements from 'src/util/tractorMeasurements.json'
+import tractors from 'src/turktraktor/data/tractor'
+import statusFeatures from 'src/turktraktor/data/tractor-status-features'
+import tractorMeasurements from 'src/turktraktor/util/tractorMeasurements.json'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
