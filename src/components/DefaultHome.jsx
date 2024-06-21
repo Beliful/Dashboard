@@ -21,11 +21,11 @@ function DefaultHome() {
             </CCard>
             <CCard style={{ width: '18rem' }}>
                 <CCardBody>
-                <CCardTitle>Turk Traktor</CCardTitle>
+                <CCardTitle>Air Quality Dashboard</CCardTitle>
                 <CCardText>
                     A dashboard application displaying the location and status of the tractors and IoT devices.
                 </CCardText>
-                <CButton color="primary" href="/turktraktor">
+                <CButton color="primary" href="/havakirlilik">
                     Go to demo
                 </CButton>
                 </CCardBody>
