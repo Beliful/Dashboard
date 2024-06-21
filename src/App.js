@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { useSelector } from 'react-redux';
 import { CSpinner, useColorModes } from '@coreui/react';
 import './scss/style.scss';
+import DefaultHome from './components/DefaultHome';
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./turktraktor/layout/DefaultLayout'));
@@ -46,7 +47,7 @@ const App = () => {
           <Route path="/404" element={<Page404 />} />
           <Route path="/500" element={<Page500 />} />
           <Route path="/turktraktor/*" element={<DefaultLayout />} />
-          <Route path="/" element={<Navigate to="/turktraktor" />} />
+          <Route path="/" element={<DefaultHome/>} />
         </Routes>
       </Suspense>
     </Router>
