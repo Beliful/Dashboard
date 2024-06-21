@@ -1,12 +1,7 @@
-import { CButton, CCard, CCardBody, CCardHeader, CCardImage, CCardText, CCardTitle, CCol, CRow } from '@coreui/react';
+import { CButton, CCard, CCardBody, CCardHeader, CCardText, CCardTitle } from '@coreui/react';
 import React from 'react';
-import { DocsExample } from '../turktraktor/components';
 
 function DefaultHome() {
-  const handleClick = (buttonName) => {
-    alert(`You clicked ${buttonName}`);
-  };
-
   return (
     <CCard className="mb-4" style={{maxWidth: "100%"}}>
         <CCardHeader style={{textAlign: "center", fontSize: 22}}>
