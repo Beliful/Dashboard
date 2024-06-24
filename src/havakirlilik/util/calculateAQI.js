@@ -1,3 +1,5 @@
+import { AQINames } from "../const/enums";
+
 const breakpoints = {
     O3: [
         { AQI: [0, 50], C: [0.000, 0.054] },
@@ -45,7 +47,7 @@ const breakpoints = {
 
 export const calculateAQI = (pollutants) => {
     
-    let maxAQICategory = "Good"; // Assume the best case by default
+    let maxAQICategory = AQINames.GOOD; // Assume the best case by default
 
     // Iterate over each pollutant and calculate its AQI
     Object.keys(pollutants).forEach(pollutant => {
@@ -58,24 +60,24 @@ export const calculateAQI = (pollutants) => {
             const AQI = ((I_hi - I_lo) / (C_hi - C_lo)) * (concentration - C_lo) + I_lo;
 
             // Determine AQI category based on AQI value
-            let category = "Good";
-            if (AQI > 50) category = "Moderate";
-            if (AQI > 100) category = "Unhealthy for Sensitive Groups";
-            if (AQI > 150) category = "Unhealthy";
-            if (AQI > 200) category = "Very Unhealthy";
-            if (AQI > 300) category = "Hazardous";
+            let category = AQINames.GOOD;
+            if (AQI > 50) category = AQINames.MODERATE;
+            if (AQI > 100) category = AQINames.UNHEALTHY_FOR_SENSITIVE;
+            if (AQI > 150) category = AQINames.UNHEALTHY;
+            if (AQI > 200) category = AQINames.VERY_UNHEALTHY;
+            if (AQI > 300) category = AQINames.HAZARDOUS;
 
             // Update maxAQICategory if current pollutant's category is worse
-            if (category === "Moderate" && maxAQICategory === "Good") {
-                maxAQICategory = "Moderate";
-            } else if (category === "Unhealthy for Sensitive Groups" && (maxAQICategory === "Good" || maxAQICategory === "Moderate")) {
-                maxAQICategory = "Unhealthy for Sensitive Groups";
-            } else if (category === "Unhealthy" && (maxAQICategory === "Good" || maxAQICategory === "Moderate" || maxAQICategory === "Unhealthy for Sensitive Groups")) {
-                maxAQICategory = "Unhealthy";
-            } else if (category === "Very Unhealthy" && (maxAQICategory === "Good" || maxAQICategory === "Moderate" || maxAQICategory === "Unhealthy for Sensitive Groups" || maxAQICategory === "Unhealthy")) {
-                maxAQICategory = "Very Unhealthy";
-            } else if (category === "Hazardous" && (maxAQICategory === "Good" || maxAQICategory === "Moderate" || maxAQICategory === "Unhealthy for Sensitive Groups" || maxAQICategory === "Unhealthy" || maxAQICategory === "Very Unhealthy")) {
-                maxAQICategory = "Hazardous";
+            if (category === AQINames.MODERATE && maxAQICategory === AQINames.GOOD) {
+                maxAQICategory = AQINames.MODERATE;
+            } else if (category === AQINames.UNHEALTHY_FOR_SENSITIVE && (maxAQICategory === AQINames.GOOD || maxAQICategory === AQINames.MODERATE)) {
+                maxAQICategory = AQINames.UNHEALTHY_FOR_SENSITIVE;
+            } else if (category === AQINames.UNHEALTHY && (maxAQICategory === AQINames.GOOD || maxAQICategory === AQINames.MODERATE || maxAQICategory === AQINames.UNHEALTHY_FOR_SENSITIVE)) {
+                maxAQICategory = AQINames.UNHEALTHY;
+            } else if (category === AQINames.VERY_UNHEALTHY && (maxAQICategory === AQINames.GOOD || maxAQICategory === AQINames.MODERATE || maxAQICategory === AQINames.UNHEALTHY_FOR_SENSITIVE || maxAQICategory === AQINames.UNHEALTHY)) {
+                maxAQICategory = AQINames.VERY_UNHEALTHY;
+            } else if (category === AQINames.HAZARDOUS && (maxAQICategory === AQINames.GOOD || maxAQICategory === AQINames.MODERATE || maxAQICategory === AQINames.UNHEALTHY_FOR_SENSITIVE || maxAQICategory === AQINames.UNHEALTHY || maxAQICategory === AQINames.VERY_UNHEALTHY)) {
+                maxAQICategory = AQINames.HAZARDOUS;
             }
         }
     });

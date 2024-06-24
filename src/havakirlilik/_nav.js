@@ -8,7 +8,7 @@ import {
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
-const base = "/turktraktor"
+const base = "/havakirlilik"
 const _nav = [
   {
     component: CNavItem,

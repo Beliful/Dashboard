@@ -3,57 +3,82 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Agriculture, FmdGood, RssFeed } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
-import tractors from 'src/turktraktor/data/tractor'
-import iotDevices from 'src/turktraktor/data/iot-devices'
 import pollutionData1 from 'src/havakirlilik/util/pollutionData1'
 import pollutionData2 from 'src/havakirlilik/util/pollutionData2'
 import pollutionData3 from 'src/havakirlilik/util/pollutionData3'
-import { TractorStatus, Location } from '../../../const/enums'
+import pollutionData4 from 'src/havakirlilik/util/pollutionData4'
+import { Location, AQINames } from '../../../const/enums'
 import { createCustomIcon } from '../../../util/createLeafletIcon'
 import { locations, pollutants } from '../../../const/const'
 import { formatDate } from '../../../util/formatDate'
+import { calculateAQI } from '../../../util/calculateAQI'
 
 const Map = () => {
-  const [selectedVehicleStatuses, setSelectedVehicleStatuses] = useState(
-    Object.values(TractorStatus),
+  const [selectedAQI, setSelectedAQI] = useState(
+    Object.values(AQINames),
   ) // All statuses selected initially
-  const navigate = useNavigate()
   const [pollutionArray, setPollutions] = useState([])
-  console.log("AAAAAAAAAAAAAAA")
+  const navigate = useNavigate()
+
+  const handleAQISelectionChange = (status) => {
+    setSelectedAQI((prevStatuses) =>
+      prevStatuses.includes(status)
+        ? prevStatuses.filter((s) => s !== status)
+        : [...prevStatuses, status],
+    )
+  }
+
   useEffect(() => {
     const dataArr = []
 
-    let latestData = getLatestVehicleData(Location.IZMIR)
+    let latestData = getLatestDeviceData(Location.IZMIR)
     latestData["location"] = locations.Izmir
     dataArr.push(latestData)
 
-    latestData = getLatestVehicleData(Location.TURUNC)
+    latestData = getLatestDeviceData(Location.TURUNC)
     latestData["location"] = locations.Turunc
     dataArr.push(latestData)
 
-    latestData = getLatestVehicleData(Location.DATCA)
+    latestData = getLatestDeviceData(Location.DATCA)
     latestData["location"] = locations.Datca
+    dataArr.push(latestData)
+
+    latestData = getLatestDeviceData(Location.KUSADASI)
+    latestData["location"] = locations.Kusadasi
     dataArr.push(latestData)
 
     console.log(dataArr)
     setPollutions(dataArr)
   }, [])
 
-  const getLatestVehicleData = (location) => {
+  const getLatestDeviceData = (location) => {
     let locationPollution = pollutionData3;
 
     if (location == Location.IZMIR) {
       locationPollution = pollutionData1
     } else if (location == Location.TURUNC) {
       locationPollution = pollutionData2
+    } else if (location == Location.KUSADASI) {
+      locationPollution = pollutionData4
     }
 
-    let latestData = locationPollution[locationPollution.length - 1]
-    console.log(latestData)
-
+    console.log(locationPollution)
     
+    let latestData = locationPollution[locationPollution.length - 1]
+    latestData["AQI"] = calculateAQI(latestData.measurements)
+    console.log(latestData)   
 
     return latestData
+  }
+
+  const getPinColor = (aqi) => {
+    if (aqi == AQINames.GOOD || aqi == AQINames.MODERATE) {
+      return "green";
+    } else if (aqi == AQINames.UNHEALTHY_FOR_SENSITIVE || aqi == AQINames.UNHEALTHY) {
+      return "orange";
+    } else if (aqi == AQINames.VERY_UNHEALTHY || aqi == AQINames.HAZARDOUS) {
+      return "red";
+    }
   }
 
   return (
@@ -74,7 +99,7 @@ const Map = () => {
             borderColor: 'red',
           }}
         >
-          {Object.values(TractorStatus).map((status) => (
+          {Object.values(AQINames).map((status) => (
             <label
               key={status}
               style={{
@@ -83,8 +108,8 @@ const Map = () => {
             >
               <input
                 type="checkbox"
-                checked={selectedVehicleStatuses.includes(status)}
-                onChange={() => handleVehicleStatusChange(status)}
+                checked={selectedAQI.includes(status)}
+                onChange={() => handleAQISelectionChange(status)}
               />
               {status}
             </label>
@@ -96,12 +121,14 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
-        {pollutionArray.map((item) => {
+        {pollutionArray
+          .filter(item => selectedAQI.includes(item.AQI)) // Filter markers based on selected AQI
+          .map((item) => {
           return (
             <Marker
               key={item.location.name}
               position={[item.location.lat, item.location.lon]}
-              icon={createCustomIcon(<FmdGood />, 'red')
+              icon={createCustomIcon(<FmdGood />, getPinColor(item.AQI))
               }
             >
               <Popup>
@@ -114,19 +141,21 @@ const Map = () => {
                   >
                     <h5
                       style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black' }}
-                      onClick={() => navigate(`/turktraktor/dashboard/vehicle/${currentVehicle.tractorId}`)}
+                      onClick={() => navigate(`/havakirlilik/dashboard/device/${item.location.id}`)}
                     >
                       {`${item.location.name} - ${item.location.def}`}
                     </h5>
                     <p style={{ fontStyle: 'italic', color: 'gray' }}>
                       {formatDate(item.timestamp)}
                     </p>
-                    <p>O<sub>3</sub>: {item.O3}{pollutants.O3.unit}</p>
-                    <p>PM<sub>25</sub>: {item.PM25}{pollutants.PM25.unit}</p>
-                    <p>PM<sub>10</sub>: {item.PM10}{pollutants.PM10.unit}</p>
-                    <p>CO: {item.CO}{pollutants.CO.unit}</p>
-                    <p>SO<sub>2</sub>: {item.SO2}{pollutants.SO2.unit}</p>
-                    <p>NO<sub>2</sub>: {item.NO2}{pollutants.NO2.unit}</p>
+                    
+                    <p><strong>AQI</strong>: {item.AQI}</p>
+                    <p>O<sub>3</sub>: {item.measurements.O3}{pollutants.O3.unit}</p>
+                    <p>PM<sub>25</sub>: {item.measurements.PM25}{pollutants.PM25.unit}</p>
+                    <p>PM<sub>10</sub>: {item.measurements.PM10}{pollutants.PM10.unit}</p>
+                    <p>CO: {item.measurements.CO}{pollutants.CO.unit}</p>
+                    <p>SO<sub>2</sub>: {item.measurements.SO2}{pollutants.SO2.unit}</p>
+                    <p>NO<sub>2</sub>: {item.measurements.NO2}{pollutants.NO2.unit}</p>
                   </div>
                 
               </Popup>

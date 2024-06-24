@@ -5,6 +5,7 @@ import statusFeatures from 'src/turktraktor/data/tractor-status-features'
 
 const getMinMax = (data, feature) => {
   const allDataPoints = data.datasets.flatMap((dataset) => dataset.data)
+  console.log("all", allDataPoints)
   const min = Math.min(...allDataPoints)
   const max = Math.max(...allDataPoints)
 
