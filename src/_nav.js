@@ -4,7 +4,7 @@ import {
   cilRss,
   cilLocomotive,
   cilSpeedometer,
-  cilMap,
+  cilMap
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 

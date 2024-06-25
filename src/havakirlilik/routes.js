@@ -1,4 +1,5 @@
 import React from 'react'
+import AQIDashboard from './views/dashboard/AQIDashboard'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const DashboardVehicle = React.lazy(() => import('./views/dashboard/DashboardVehicle'))
@@ -57,6 +58,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+  { path: '/aqi', name: 'AQI', element: AQIDashboard },
   { path: '/dashboard-template', name: 'Dashboard Template', element: Dashboard },
   { path: '/dashboard', name: 'Dashboard', element: DashboardVehicle },
   { path: '/iot-devices', name: 'IOT Devices', element: IOTDevice },

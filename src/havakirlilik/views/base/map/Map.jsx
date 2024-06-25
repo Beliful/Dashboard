@@ -86,7 +86,7 @@ const Map = () => {
             padding: '2px 10px',
           }}
         >
-          Filter by status{' '}
+          Filter by AQI{' '}
         </label>
         <div
           style={{
