@@ -49,7 +49,6 @@ export const findLocationByName = (name) => {
 
 export const findLocationById = (id) => {
     for (const key in locations) {
-        console.log(key)
         if (locations[key].id == id) {
             return locations[key];
         }

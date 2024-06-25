@@ -6,9 +6,7 @@ import { pollutants } from '../../const/const'
 const getMinMax = (data, feature) => {
   const allDataPoints = data.datasets.flatMap((dataset) => dataset.data)
 
-  console.log("all", allDataPoints)
   const min = Math.min(...allDataPoints)
-  console.log("min", feature)
   const max = Math.max(...allDataPoints)
 
   const paddedMin = Math.floor(min - (max - min) * 0.1)

@@ -18,6 +18,7 @@ import CIcon from '@coreui/icons-react'
 import { cilCloudDownload } from '@coreui/icons'
 import VehicleFeatureChart from './VehicleFeatureChart'
 import { getStyle } from '@coreui/utils'
+import WeatherDeviceMap from './WeatherDeviceMap'
 
 const VehicleDetails = () => {
   const { locationId } = useParams()
@@ -27,25 +28,25 @@ const VehicleDetails = () => {
 
   useEffect(() => {
     const data = getLatestDeviceData(locationId)
-    console.log("aaaaaaa", data)
     setLatestData(data.latestData)
     setPollutionData(data.locationPollution)
   }, [locationId])
 
-  const getLatestDeviceData = (location) => {
+  const getLatestDeviceData = (locationId) => {
+    let currentLoc = findLocationById(locationId)
     let locationPollution = pollutionData3
 
-    if (location === 'IZMIR') {
+    if (currentLoc.name.toUpperCase() === 'IZMIR') {
       locationPollution = pollutionData1
-    } else if (location === 'TURUNC') {
+    } else if (currentLoc.name.toUpperCase() === 'TURUNC') {
       locationPollution = pollutionData2
-    } else if (location === 'KUSADASI') {
+    } else if (currentLoc.name.toUpperCase() === 'KUSADASI') {
       locationPollution = pollutionData4
     }
 
     locationPollution.forEach((data) => {
       data.AQI = calculateAQI(data.measurements)
-      data.location = locations[location]
+      data.location = currentLoc
     })
 
     const latestData = locationPollution[locationPollution.length - 1]
@@ -54,7 +55,6 @@ const VehicleDetails = () => {
   }
 
   const currentLocation = findLocationById(locationId)
-  console.log(currentLocation)
 
   if (!currentLocation) {
     return <p>Device with ID {locationId} not found.</p>
@@ -67,7 +67,6 @@ const VehicleDetails = () => {
   const formatChartData = (data, feature) => {
     const labels = data.map((entry) => new Date(entry.timestamp).toLocaleString())
     const dataset = data.map((entry) => parseFloat(entry.measurements[feature]))
-    console.log("dataset", dataset)
 
     return {
       labels,
@@ -96,17 +95,8 @@ const VehicleDetails = () => {
 
   return (
     <div>
-      <div style={{ height: '500px' }}>
-        <h4>{currentLocation.name} - {currentLocation.def}</h4>
-        <p>AQI: {latestData.AQI}</p>
-        <p>O<sub>3</sub>: {latestData.measurements.O3}</p>
-        <p>PM<sub>25</sub>: {latestData.measurements.PM25}</p>
-        <p>PM<sub>10</sub>: {latestData.measurements.PM10}</p>
-        <p>CO: {latestData.measurements.CO}</p>
-        <p>SO<sub>2</sub>: {latestData.measurements.SO2}</p>
-        <p>NO<sub>2</sub>: {latestData.measurements.NO2}</p>
-      </div>
       <CCard className="mb-4">
+      <WeatherDeviceMap data={latestData} />
         <CCardBody>
           <CRow>
             <CCol sm={5}>

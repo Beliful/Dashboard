@@ -47,7 +47,6 @@ const Map = () => {
     latestData["location"] = locations.Kusadasi
     dataArr.push(latestData)
 
-    console.log(dataArr)
     setPollutions(dataArr)
   }, [])
 
@@ -62,8 +61,6 @@ const Map = () => {
       locationPollution = pollutionData4
     }
 
-    console.log(locationPollution)
-    
     let latestData = locationPollution[locationPollution.length - 1]
     latestData["AQI"] = calculateAQI(latestData.measurements)
     console.log(latestData)   

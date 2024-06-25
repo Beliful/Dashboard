@@ -1,13 +1,13 @@
 import ReactDOMServer from 'react-dom/server'
-export const createCustomIcon = (icon, color) => {
+export const createCustomIcon = (icon, color, size=30) => {
   let svgString = ReactDOMServer.renderToString(icon)
   svgString = svgString.replace(/<path/g, `<path fill="${color}"`) // set color of the icon
 
   return new L.DivIcon({
     html: svgString,
     className: 'custom-icon',
-    iconSize: [30, 30],
-    iconAnchor: [15, 15],
-    popupAnchor: [0, -15],
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2],
+    popupAnchor: [0, -size/2],
   })
 }
