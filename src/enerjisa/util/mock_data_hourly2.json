@@ -1,0 +1,853 @@
+{
+  "billData": {
+    "amount": 11127.07,
+    "dueDate": "2024-08-01T00:00:00.000Z",
+    "paymentStatus": "Unpaid",
+    "paymentDate": null
+  },
+  "consumptionData": [
+    {
+      "timestamp": "2024-07-09T00:00:00.000Z",
+      "electricityUsage": 1207.29,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T01:00:00.000Z",
+      "electricityUsage": 1073.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T02:00:00.000Z",
+      "electricityUsage": 1301.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T03:00:00.000Z",
+      "electricityUsage": 1369.45,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T04:00:00.000Z",
+      "electricityUsage": 1391.25,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T05:00:00.000Z",
+      "electricityUsage": 1201.44,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T06:00:00.000Z",
+      "electricityUsage": 1193.69,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T07:00:00.000Z",
+      "electricityUsage": 1406.24,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T08:00:00.000Z",
+      "electricityUsage": 1180.3,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T09:00:00.000Z",
+      "electricityUsage": 1004.96,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T10:00:00.000Z",
+      "electricityUsage": 1371.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T11:00:00.000Z",
+      "electricityUsage": 1167.24,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T12:00:00.000Z",
+      "electricityUsage": 1433.85,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T13:00:00.000Z",
+      "electricityUsage": 1099.13,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T14:00:00.000Z",
+      "electricityUsage": 1070.18,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T15:00:00.000Z",
+      "electricityUsage": 1260.45,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T16:00:00.000Z",
+      "electricityUsage": 1362.6,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T17:00:00.000Z",
+      "electricityUsage": 1230.17,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T18:00:00.000Z",
+      "electricityUsage": 1420.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T19:00:00.000Z",
+      "electricityUsage": 1175.5,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T20:00:00.000Z",
+      "electricityUsage": 1338.95,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T21:00:00.000Z",
+      "electricityUsage": 1485.14,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T22:00:00.000Z",
+      "electricityUsage": 1177.05,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-09T23:00:00.000Z",
+      "electricityUsage": 1280.76,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T00:00:00.000Z",
+      "electricityUsage": 1245.51,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T01:00:00.000Z",
+      "electricityUsage": 1245.14,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T02:00:00.000Z",
+      "electricityUsage": 1185.34,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T03:00:00.000Z",
+      "electricityUsage": 1470.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T04:00:00.000Z",
+      "electricityUsage": 1184.58,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T05:00:00.000Z",
+      "electricityUsage": 1004.57,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T06:00:00.000Z",
+      "electricityUsage": 1188.34,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T07:00:00.000Z",
+      "electricityUsage": 1062.93,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T08:00:00.000Z",
+      "electricityUsage": 1236.06,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T09:00:00.000Z",
+      "electricityUsage": 1030.26,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T10:00:00.000Z",
+      "electricityUsage": 1050.09,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T11:00:00.000Z",
+      "electricityUsage": 1012.03,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T12:00:00.000Z",
+      "electricityUsage": 1244.97,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T13:00:00.000Z",
+      "electricityUsage": 1235.94,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T14:00:00.000Z",
+      "electricityUsage": 1052.12,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T15:00:00.000Z",
+      "electricityUsage": 1331.46,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T16:00:00.000Z",
+      "electricityUsage": 1180.55,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T17:00:00.000Z",
+      "electricityUsage": 1463.91,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T18:00:00.000Z",
+      "electricityUsage": 1473.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T19:00:00.000Z",
+      "electricityUsage": 1254.74,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T20:00:00.000Z",
+      "electricityUsage": 1161.31,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T21:00:00.000Z",
+      "electricityUsage": 1008.51,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T22:00:00.000Z",
+      "electricityUsage": 1198.37,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-10T23:00:00.000Z",
+      "electricityUsage": 1058.69,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T00:00:00.000Z",
+      "electricityUsage": 1351.2,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T01:00:00.000Z",
+      "electricityUsage": 1402.9,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T02:00:00.000Z",
+      "electricityUsage": 1449.35,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T03:00:00.000Z",
+      "electricityUsage": 1113.47,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T04:00:00.000Z",
+      "electricityUsage": 1476.26,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T05:00:00.000Z",
+      "electricityUsage": 1121.38,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T06:00:00.000Z",
+      "electricityUsage": 1030.96,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T07:00:00.000Z",
+      "electricityUsage": 1434.8,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T08:00:00.000Z",
+      "electricityUsage": 1324.93,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T09:00:00.000Z",
+      "electricityUsage": 1431.99,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T10:00:00.000Z",
+      "electricityUsage": 1245.94,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T11:00:00.000Z",
+      "electricityUsage": 1473.23,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T12:00:00.000Z",
+      "electricityUsage": 1049.57,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T13:00:00.000Z",
+      "electricityUsage": 1050.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T14:00:00.000Z",
+      "electricityUsage": 1343.19,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T15:00:00.000Z",
+      "electricityUsage": 1227.92,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T16:00:00.000Z",
+      "electricityUsage": 1186.38,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T17:00:00.000Z",
+      "electricityUsage": 1223.15,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T18:00:00.000Z",
+      "electricityUsage": 1134.17,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T19:00:00.000Z",
+      "electricityUsage": 1421.09,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T20:00:00.000Z",
+      "electricityUsage": 1431.13,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T21:00:00.000Z",
+      "electricityUsage": 1258.3,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T22:00:00.000Z",
+      "electricityUsage": 1452.73,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-11T23:00:00.000Z",
+      "electricityUsage": 1444.66,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T00:00:00.000Z",
+      "electricityUsage": 1124.3,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T01:00:00.000Z",
+      "electricityUsage": 1215.76,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T02:00:00.000Z",
+      "electricityUsage": 1304.25,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T03:00:00.000Z",
+      "electricityUsage": 1475.94,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T04:00:00.000Z",
+      "electricityUsage": 1352.8,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T05:00:00.000Z",
+      "electricityUsage": 1472.15,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T06:00:00.000Z",
+      "electricityUsage": 1237.03,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T07:00:00.000Z",
+      "electricityUsage": 1307.99,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T08:00:00.000Z",
+      "electricityUsage": 1348.68,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T09:00:00.000Z",
+      "electricityUsage": 1324.45,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T10:00:00.000Z",
+      "electricityUsage": 1163.88,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T11:00:00.000Z",
+      "electricityUsage": 1178.37,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T12:00:00.000Z",
+      "electricityUsage": 1007.51,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T13:00:00.000Z",
+      "electricityUsage": 1452.68,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T14:00:00.000Z",
+      "electricityUsage": 1147.8,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T15:00:00.000Z",
+      "electricityUsage": 1095.87,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T16:00:00.000Z",
+      "electricityUsage": 1060.31,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T17:00:00.000Z",
+      "electricityUsage": 1330.09,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T18:00:00.000Z",
+      "electricityUsage": 1469.08,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T19:00:00.000Z",
+      "electricityUsage": 1410,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T20:00:00.000Z",
+      "electricityUsage": 1485.55,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T21:00:00.000Z",
+      "electricityUsage": 1103.78,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T22:00:00.000Z",
+      "electricityUsage": 1264.68,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-12T23:00:00.000Z",
+      "electricityUsage": 1050.69,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T00:00:00.000Z",
+      "electricityUsage": 1483.35,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T01:00:00.000Z",
+      "electricityUsage": 1024.86,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T02:00:00.000Z",
+      "electricityUsage": 1354.75,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T03:00:00.000Z",
+      "electricityUsage": 1045.66,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T04:00:00.000Z",
+      "electricityUsage": 1061.97,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T05:00:00.000Z",
+      "electricityUsage": 1275.98,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T06:00:00.000Z",
+      "electricityUsage": 1242.2,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T07:00:00.000Z",
+      "electricityUsage": 1047.96,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T08:00:00.000Z",
+      "electricityUsage": 1003.2,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T09:00:00.000Z",
+      "electricityUsage": 1144.08,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T10:00:00.000Z",
+      "electricityUsage": 1003.99,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T11:00:00.000Z",
+      "electricityUsage": 1004.13,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T12:00:00.000Z",
+      "electricityUsage": 1412.73,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T13:00:00.000Z",
+      "electricityUsage": 1306.81,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T14:00:00.000Z",
+      "electricityUsage": 1183.92,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T15:00:00.000Z",
+      "electricityUsage": 1340.95,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T16:00:00.000Z",
+      "electricityUsage": 1187.36,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T17:00:00.000Z",
+      "electricityUsage": 1218.24,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T18:00:00.000Z",
+      "electricityUsage": 1205.93,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T19:00:00.000Z",
+      "electricityUsage": 1270.55,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T20:00:00.000Z",
+      "electricityUsage": 1337.18,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T21:00:00.000Z",
+      "electricityUsage": 1085.89,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T22:00:00.000Z",
+      "electricityUsage": 1144.69,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-13T23:00:00.000Z",
+      "electricityUsage": 1441.96,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T00:00:00.000Z",
+      "electricityUsage": 1175.95,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T01:00:00.000Z",
+      "electricityUsage": 1037.2,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T02:00:00.000Z",
+      "electricityUsage": 1145.26,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T03:00:00.000Z",
+      "electricityUsage": 1440.64,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T04:00:00.000Z",
+      "electricityUsage": 1029.12,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T05:00:00.000Z",
+      "electricityUsage": 1210.08,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T06:00:00.000Z",
+      "electricityUsage": 1064.91,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T07:00:00.000Z",
+      "electricityUsage": 1404.41,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T08:00:00.000Z",
+      "electricityUsage": 1493.67,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T09:00:00.000Z",
+      "electricityUsage": 1226.47,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T10:00:00.000Z",
+      "electricityUsage": 1356.36,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T11:00:00.000Z",
+      "electricityUsage": 1240.87,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T12:00:00.000Z",
+      "electricityUsage": 1461.38,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T13:00:00.000Z",
+      "electricityUsage": 1492.14,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T14:00:00.000Z",
+      "electricityUsage": 1454.94,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T15:00:00.000Z",
+      "electricityUsage": 1038.77,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T16:00:00.000Z",
+      "electricityUsage": 1223.61,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T17:00:00.000Z",
+      "electricityUsage": 1342.14,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T18:00:00.000Z",
+      "electricityUsage": 1273.03,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T19:00:00.000Z",
+      "electricityUsage": 1186.53,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T20:00:00.000Z",
+      "electricityUsage": 1356.72,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T21:00:00.000Z",
+      "electricityUsage": 1276.33,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T22:00:00.000Z",
+      "electricityUsage": 1436.3,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-14T23:00:00.000Z",
+      "electricityUsage": 1491.92,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T00:00:00.000Z",
+      "electricityUsage": 1016.8,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T01:00:00.000Z",
+      "electricityUsage": 1174.1,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T02:00:00.000Z",
+      "electricityUsage": 1363.93,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T03:00:00.000Z",
+      "electricityUsage": 1142.65,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T04:00:00.000Z",
+      "electricityUsage": 1351.23,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T05:00:00.000Z",
+      "electricityUsage": 1460.79,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T06:00:00.000Z",
+      "electricityUsage": 1252.85,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T07:00:00.000Z",
+      "electricityUsage": 1253.49,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T08:00:00.000Z",
+      "electricityUsage": 1481.11,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T09:00:00.000Z",
+      "electricityUsage": 1216.09,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T10:00:00.000Z",
+      "electricityUsage": 1040.43,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T11:00:00.000Z",
+      "electricityUsage": 1070.37,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T12:00:00.000Z",
+      "electricityUsage": 1321.7,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T13:00:00.000Z",
+      "electricityUsage": 1164.14,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T14:00:00.000Z",
+      "electricityUsage": 1389.02,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T15:00:00.000Z",
+      "electricityUsage": 1062.57,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T16:00:00.000Z",
+      "electricityUsage": 1194.47,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T17:00:00.000Z",
+      "electricityUsage": 1419.2,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T18:00:00.000Z",
+      "electricityUsage": 1075.62,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T19:00:00.000Z",
+      "electricityUsage": 1349.57,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T20:00:00.000Z",
+      "electricityUsage": 1100.83,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T21:00:00.000Z",
+      "electricityUsage": 1119.54,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T22:00:00.000Z",
+      "electricityUsage": 1128.68,
+      "operationalHours": 1
+    },
+    {
+      "timestamp": "2024-07-15T23:00:00.000Z",
+      "electricityUsage": 1472.33,
+      "operationalHours": 1
+    }
+  ],
+  "energyEfficiencyRating": "E",
+  "peakUsage": 1493.67,
+  "averageUsage": 1247.35
+}

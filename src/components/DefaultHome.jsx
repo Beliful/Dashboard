@@ -36,7 +36,7 @@ function DefaultHome() {
                 <CCardText>
                     A dashboard application displaying the location and status of the tractors and IoT devices.
                 </CCardText>
-                <CButton color="primary" href="/turktraktor">
+                <CButton color="primary" href="/enerjisa">
                     Go to demo
                 </CButton>
                 </CCardBody>
