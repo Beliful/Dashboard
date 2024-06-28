@@ -34,7 +34,7 @@ function DefaultHome() {
                 <CCardBody>
                 <CCardTitle>EnerjiSA</CCardTitle>
                 <CCardText>
-                    A dashboard application that displays the electricity usage and bill payment details of factoriesss.
+                    A dashboard application that displays the electricity usage and bill payment details of factories.
                 </CCardText>
                 <CButton color="primary" href="/enerjisa">
                     Go to demo
