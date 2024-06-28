@@ -13,8 +13,8 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilWarning } from '@coreui/icons'
-import devices from 'src/data/iot-devices'
-import statusFeatures from 'src/data/tractor-status-features'
+import devices from 'src/turktraktor/data/iot-devices'
+import statusFeatures from 'src/turktraktor/data/tractor-status-features'
 import { useNavigate } from 'react-router-dom'
 
 const DashboardIoT = () => {

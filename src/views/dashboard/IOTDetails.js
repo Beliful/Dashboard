@@ -17,9 +17,9 @@ import { getStyle } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 import { cilCloudDownload } from '@coreui/icons'
 import ReactSpeedometer from 'react-d3-speedometer'
-import iotDevices from 'src/data/iot-devices'
-import statusFeatures from 'src/data/iot-status-features'
-import IOTMeasurements from 'src/data/devices.json'
+import iotDevices from 'src/turktraktor/data/iot-devices'
+import statusFeatures from 'src/turktraktor/data/iot-status-features'
+import IOTMeasurements from 'src/turktraktor/data/devices.json'
 import IOTFeatureChart from './IOTFeatureChart'
 
 const IOTDetails = () => {

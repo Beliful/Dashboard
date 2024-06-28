@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle } from '@coreui/utils'
-import statusFeatures from 'src/data/tractor-status-features'
+import statusFeatures from 'src/turktraktor/data/tractor-status-features'
 
 const getMinMax = (data, feature) => {
   const allDataPoints = data.datasets.flatMap((dataset) => dataset.data)

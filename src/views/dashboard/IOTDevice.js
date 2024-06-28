@@ -10,9 +10,9 @@ import {
   CCardText,
   CCardTitle,
 } from '@coreui/react'
-import deviceData from 'src/data/devices.json'
-import iotDevices from 'src/data/iot-devices'
-import sensorTypes from 'src/data/iot-device-types'
+import deviceData from 'src/turktraktor/data/devices.json'
+import iotDevices from 'src/turktraktor/data/iot-devices'
+import sensorTypes from 'src/turktraktor/data/iot-device-types'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
