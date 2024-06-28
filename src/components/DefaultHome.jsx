@@ -32,9 +32,9 @@ function DefaultHome() {
             </CCard>
             <CCard style={{ width: '18rem' }}>
                 <CCardBody>
-                <CCardTitle>Turk Traktor</CCardTitle>
+                <CCardTitle>EnerjiSA</CCardTitle>
                 <CCardText>
-                    A dashboard application displaying the location and status of the tractors and IoT devices.
+                    A dashboard application displaying the electricity usage and bill payment details of factories.
                 </CCardText>
                 <CButton color="primary" href="/enerjisa">
                     Go to demo

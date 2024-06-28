@@ -92,7 +92,7 @@ const VehicleDetails = () => {
           <CRow>
             <CCol sm={5}>
               <h4 id="pollution" className="card-title mb-0">
-                Pollution Data
+                Usage Data
               </h4>
               <div className="small text-body-secondary">January - July 2023</div>
             </CCol>
