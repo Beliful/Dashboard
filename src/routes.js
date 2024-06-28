@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 
 // const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 // const DashboardVehicle = React.lazy(() => import('./views/dashboard/DashboardVehicle'))
@@ -55,8 +55,8 @@
 
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-// const routes = [
-//   { path: '/', exact: true, name: 'Home' },
+const routes = [
+  { path: '/', exact: true, name: 'Home' },
 //   { path: '/dashboard-template', name: 'Dashboard Template', element: Dashboard },
 //   { path: '/dashboard', name: 'Dashboard', element: DashboardVehicle },
 //   { path: '/iot-devices', name: 'IOT Devices', element: IOTDevice },
@@ -105,6 +105,6 @@
 //   { path: '/notifications/modals', name: 'Modals', element: Modals },
 //   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
 //   { path: '/widgets', name: 'Widgets', element: Widgets },
-// ]
+]
 
-// export default routes
+export default routes
