@@ -1,9 +1,12 @@
+import { VehicleTypes } from "../const/enums"
+
 const tractors = [
   {
     id: 1,
     owner: 'Michael Scott',
     driver: 'Jane Smith',
     model: 'New Holland TD 90 D',
+    type: VehicleTypes.TRACTOR,
     location: {
       latitude: 36.932594950867966,
       longitude: 32.857539458515696,
@@ -30,6 +33,7 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Bob Brown',
     model: 'Case JX 55 E',
+    type: VehicleTypes.TRACTOR,
     location: {
       latitude: 36.70879710644043,
       longitude: 34.00942322451533,
@@ -56,6 +60,7 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Dan White',
     model: 'CAT 303 CR',
+    type: VehicleTypes.MINIK_KEPCE,
     location: {
       latitude: 36.5110758444228,
       longitude: 32.122845484093595,
@@ -82,6 +87,7 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Emma Brown',
     model: 'CAT 434 E',
+    type: VehicleTypes.KEPCE,
     location: {
       latitude: 36.852447477775385,
       longitude: 35.35313847047025,
@@ -108,6 +114,7 @@ const tractors = [
     owner: 'Michael Scott',
     driver: 'Pam Beesly',
     model: 'MAN TGM',
+    type: VehicleTypes.TRUCK,
     location: {
       latitude: 36.87596137682607,
       longitude: 32.62540173317867,

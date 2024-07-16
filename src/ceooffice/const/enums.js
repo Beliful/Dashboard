@@ -9,3 +9,10 @@ export const SensorTypes = {
   TEMPERATURE: 'temperature',
   HUMIDITY: 'humidity',
 }
+
+export const VehicleTypes = {
+  TRACTOR: 'tructor',
+  TRUCK: 'truck',
+  KEPCE: 'kepce',
+  MINIK_KEPCE: 'minik_kepce',
+}

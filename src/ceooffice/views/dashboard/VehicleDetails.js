@@ -24,7 +24,9 @@ import statusFeatures from 'src/ceooffice/data/tractor-status-features'
 import tractorMeasurements from 'src/ceooffice/util/tractorMeasurements.json' // Importing the tractor measurements data
 import VehicleFeatureChart from './VehicleFeatureChart'
 import { formatDate } from '../../util/formatDate'
+import tractorDetails from '../../data/tractor'
 import TractorPathMap from './TractorPathMap'
+import { VehicleTypes } from '../../const/enums'
 
 const VehicleDetails = () => {
   const { tractorId } = useParams()
@@ -34,27 +36,37 @@ const VehicleDetails = () => {
   const [tractorData, setTractorData] = useState(null)
 
   useEffect(() => {
-    // Filter out the latest data for the selected tractor
+    if (tractorId) {
+      // Filter out the latest data for the selected tractor
+      const currentTractor = tractorMeasurements.filter(
+        (tractor) => tractor.tractorId === parseInt(tractorId),
+      )
+
+      setLatestData(currentTractor[currentTractor.length - 1])
+      setTractorData(currentTractor)
+    }
+  }, [tractorId])
+
+  // console.log('tractorid: ', tractorId)
+  // console.log('selectedtractor: ', selectedTractor)
+  console.log('data: ', tractorData)
+
+  const handleTractorChange = (selectedId) => {
+    setSelectedTractor(selectedId)
+
     const currentTractor = tractorMeasurements.filter(
-      (tractor) => tractor.tractorId === parseInt(selectedTractor),
+      (tractor) => tractor.tractorId === parseInt(selectedId),
     )
 
     setLatestData(currentTractor[currentTractor.length - 1])
     setTractorData(currentTractor)
-  }, [selectedTractor])
-
-  console.log('tractordata: ', tractorData)
-  const handleTractorChange = (selectedId) => {
-    setSelectedTractor(selectedId)
     navigate(`/ceooffice/dashboard/vehicle/${selectedId}`)
   }
 
-  const tractor = tractors.find((t) => t.id === parseInt(selectedTractor))
-
-  console.log("AAAAAAAAAAAAAAAAAAAAA", tractor)
+  const tractor = tractors.find((t) => t.id === parseInt(tractorId))
 
   if (!tractor) {
-    return <p>Tractor with ID {selectedTractor} not found.</p>
+    return <p>Tractor with ID {tractorId} not found.</p>
   }
 
   const { model } = tractor
@@ -63,16 +75,12 @@ const VehicleDetails = () => {
   const getWarnings = (key, value) => {
     const warnings = []
     if (value.warn) {
-      console.log('warn val:', value.warn)
-      console.log('latest mesasure:', latestData.measurements[key])
-      console.log('key:', key)
       if (value.warn.high !== undefined && latestData.measurements[key] > value.warn.high) {
         console.log('helothere1')
         warnings.push(`${value.name} is too high!`)
       }
 
       if (value.warn.low !== undefined && latestData.measurements[key] < value.warn.low) {
-        console.log('helothere2')
         warnings.push(`${value.name} is too low!`)
       }
     }
@@ -167,6 +175,11 @@ const VehicleDetails = () => {
           })}
         </CCol>
       </CRow>
+      {tractorDetails[tractorId - 1].type == VehicleTypes.TRUCK ? <CRow>
+        <CCol>
+          5 ton yük
+        </CCol>
+      </CRow> : null}
       <CRow>
         <CCol>
           <CCard className="mb-4">

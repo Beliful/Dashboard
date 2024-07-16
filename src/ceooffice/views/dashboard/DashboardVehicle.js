@@ -100,7 +100,6 @@ const Dashboard = () => {
             <CCardBody>
               <CRow>
                 {tractors.map((tractor) => {
-                  console.log('path ex', tractor.imagePath)
                   const latestStatus = latestData[tractor.id] || {}
                   return (
                     <CCol key={tractor.id} sm="6" md="4" lg="3" className="mb-4">
