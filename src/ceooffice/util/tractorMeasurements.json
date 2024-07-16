@@ -7373,7 +7373,7 @@
     "tractorId": 2,
     "timestamp": "2024-05-18T20:00:00.000Z",
     "measurements": {
-      "speed": "27.9",
+      "speed": "0",
       "rpm": "2082.2",
       "fuelConsumption": "11.1",
       "tirePressure": {
@@ -11069,8 +11069,8 @@
     "tractorId": 3,
     "timestamp": "2024-05-18T20:00:00.000Z",
     "measurements": {
-      "speed": "37.8",
-      "rpm": "2056.0",
+      "speed": "0",
+      "rpm": "0",
       "fuelConsumption": "13.3",
       "tirePressure": {
         "frontLeft": "25.7",

@@ -28,12 +28,12 @@ const _nav = [
     to: base + '/dashboard',
     icon: <CIcon icon={cilLocomotive} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'IOT Devices',
-    to: base + '/iot-devices',
-    icon: <CIcon icon={cilRss} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'IOT Devices',
+  //   to: base + '/iot-devices',
+  //   icon: <CIcon icon={cilRss} customClassName="nav-icon" />,
+  // },
 ]
 
 export default _nav

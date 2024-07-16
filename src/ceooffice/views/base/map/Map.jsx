@@ -88,9 +88,6 @@ const Map = () => {
   return (
     <div style={{ height: '500px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <button onClick={toggleDevices}>
-          {showTractors ? 'Show IOT Devices' : 'Show Tractors'}
-        </button>
         {showTractors ? (
           <div>
             <label
