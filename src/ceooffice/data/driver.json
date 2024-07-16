@@ -1,0 +1,53 @@
+[
+    {
+      "noise": "55 dB",
+      "temperature": "22°C",
+      "humidity": "60%",
+      "gas": {
+        "CO2": "420 ppm",
+        "ammonia": "0.4 ppm",
+        "methane": "1.8 ppm"
+      }
+    },
+    {
+      "noise": "48 dB",
+      "temperature": "28°C",
+      "humidity": "45%",
+      "gas": {
+        "CO2": "410 ppm",
+        "ammonia": "0.3 ppm",
+        "methane": "1.6 ppm"
+      }
+    },
+    {
+      "noise": "65 dB",
+      "temperature": "18°C",
+      "humidity": "70%",
+      "gas": {
+        "CO2": "430 ppm",
+        "ammonia": "0.5 ppm",
+        "methane": "2.0 ppm"
+      }
+    },
+    {
+      "noise": "52 dB",
+      "temperature": "20°C",
+      "humidity": "65%",
+      "gas": {
+        "CO2": "425 ppm",
+        "ammonia": "0.4 ppm",
+        "methane": "1.7 ppm"
+      }
+    },
+    {
+      "noise": "52 dB",
+      "temperature": "20°C",
+      "humidity": "65%",
+      "gas": {
+        "CO2": "425 ppm",
+        "ammonia": "0.4 ppm",
+        "methane": "1.7 ppm"
+      }
+    }
+  ]
+  

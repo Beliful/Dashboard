@@ -41,6 +41,17 @@ function DefaultHome() {
                 </CButton>
                 </CCardBody>
             </CCard>
+            <CCard style={{ width: '18rem' }}>
+                <CCardBody>
+                <CCardTitle>CEO Office</CCardTitle>
+                <CCardText>
+                    A dashboard application that displays the electricity usage and bill payment details of factories.
+                </CCardText>
+                <CButton color="primary" href="/ceooffice">
+                    Go to demo
+                </CButton>
+                </CCardBody>
+            </CCard>
         </CCardBody>
     </CCard>
   );

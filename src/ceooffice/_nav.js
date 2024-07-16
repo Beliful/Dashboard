@@ -4,39 +4,34 @@ import {
   cilRss,
   cilLocomotive,
   cilSpeedometer,
-  cilMap
+  cilMap,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
+const base = "/ceooffice"
 const _nav = [
   {
     component: CNavItem,
     name: 'Dashboard Temp',
-    to: '/dashboard-template',
+    to: base + '/dashboard-template',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Map',
-    to: '/map',
+    to: base + '/map',
     icon: <CIcon icon={cilMap} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Dashboard',
-    to: '/dashboard',
+    to: base + '/dashboard',
     icon: <CIcon icon={cilLocomotive} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'IOT Devices',
-    to: '/iot-devices',
-    icon: <CIcon icon={cilRss} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'CEO Office',
-    to: '/map',
+    to: base + '/iot-devices',
     icon: <CIcon icon={cilRss} customClassName="nav-icon" />,
   },
 ]

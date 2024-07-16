@@ -9,6 +9,7 @@ import DefaultHome from './components/DefaultHome';
 const DefaultLayoutTT = React.lazy(() => import('./turktraktor/layout/DefaultLayout'));
 const DefaultLayoutHava = React.lazy(() => import('./havakirlilik/layout/DefaultLayout'));
 const DefaultLayoutEnerjisa = React.lazy(() => import('./enerjisa/layout/DefaultLayout'));
+const DefaultLayoutCEOOffice = React.lazy(() => import('./ceooffice/layout/DefaultLayout'));
 
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'));
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/turktraktor/*" element={<DefaultLayoutTT />} />
           <Route path="/havakirlilik/*" element={<DefaultLayoutHava />} />
           <Route path="/enerjisa/*" element={<DefaultLayoutEnerjisa />} />
+          <Route path="/ceooffice/*" element={<DefaultLayoutCEOOffice />} />
           <Route path="/" element={<DefaultHome/>} />
         </Routes>
       </Suspense>
