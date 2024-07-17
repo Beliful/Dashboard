@@ -3,6 +3,8 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const DashboardVehicle = React.lazy(() => import('./views/dashboard/DashboardVehicle'))
 const VehicleDetails = React.lazy(() => import('./views/dashboard/VehicleDetails'))
+const EarthObservation = React.lazy(() => import('./views/dashboard/EarthObservation'))
+const VehicleCam = React.lazy(() => import('./views/dashboard/VehicleCam'))
 const IOTDetails = React.lazy(() => import('./views/dashboard/IOTDetails'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -59,10 +61,12 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard-template', name: 'Dashboard Template', element: Dashboard },
   { path: '/dashboard', name: 'Dashboard', element: DashboardVehicle },
-  { path: '/turktraktor/dashboard', name: 'Dashboard', element: DashboardVehicle },
+  { path: '/ceooffice/dashboard', name: 'Dashboard', element: DashboardVehicle },
   { path: '/iot-devices', name: 'IOT Devices', element: IOTDevice },
   { path: '/iot-devices/:IOTId', name: 'IOT Details', element: IOTDetails },
   { path: '/dashboard/vehicle/:tractorId', name: 'Vehicle Details', element: VehicleDetails },
+  { path: '/earth-observation', name: 'Earth Observation', element: EarthObservation },
+  { path: '/dashboard/vehicle/cam/:vehicleId', name: 'Vehicle Cam', element: VehicleCam },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

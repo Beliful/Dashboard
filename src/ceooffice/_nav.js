@@ -5,7 +5,9 @@ import {
   cilLocomotive,
   cilSpeedometer,
   cilMap,
+  cilSun
 } from '@coreui/icons'
+import { Public } from '@mui/icons-material';
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const base = "/ceooffice"
@@ -27,6 +29,12 @@ const _nav = [
     name: 'Dashboard',
     to: base + '/dashboard',
     icon: <CIcon icon={cilLocomotive} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Earth Observation',
+    to: base + '/earth-observation',
+    icon: <CIcon icon={cilSun} customClassName="nav-icon" />,
   },
   // {
   //   component: CNavItem,

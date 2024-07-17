@@ -187,22 +187,32 @@ const VehicleDetails = () => {
                 <h5>Time: {formatDate(latestData.timestamp)}</h5>
               </CCol>
               <CCol sm={4} style={{ marginBottom: 20, marginLeft: 'auto', textAlign: 'right' }}>
-                {/* <h5 id="traffic" className="card-title mb-0"> */}
                 <p>This truck is carrying <strong>11 tons of cobblestone</strong>.</p>
-
-                {/* </h5> */}
               </CCol>
             </CRow>
-              <CDropdown style={{ marginBottom: 30 }}>
-                <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
-                <CDropdownMenu>
-                  {tractors.map((tractor) => (
-                    <CDropdownItem key={tractor.id} onClick={() => handleTractorChange(tractor.id)}>
-                      {tractor.model}'s Tractor - {tractor.plateNumber}
-                    </CDropdownItem>
-                  ))}
-                </CDropdownMenu>
-              </CDropdown>
+            <CRow style={{width: "auto"}}>
+              <CCol style={{
+                width: "auto"
+              }}>
+                <CDropdown style={{ marginBottom: 30 }}>
+                  <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
+                  <CDropdownMenu>
+                    {tractors.map((tractor) => (
+                      <CDropdownItem key={tractor.id} onClick={() => handleTractorChange(tractor.id)}>
+                        {tractor.model}'s Tractor - {tractor.plateNumber}
+                      </CDropdownItem>
+                    ))}
+                  </CDropdownMenu>
+                </CDropdown>
+              </CCol>
+              <CCol style={{
+                width: "auto"
+              }}>
+              <CButton color="secondary" onClick={() => navigate(`/ceooffice/dashboard/vehicle/cam/${tractor.id}`)}>
+                View Vehicle Cam
+              </CButton>
+              </CCol>
+              </CRow>
               <CRow>
                 {Object.entries(statusFeatures.tirePressure.subFeatures).map(
                   ([subKey, subValue]) => (
