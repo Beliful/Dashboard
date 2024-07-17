@@ -208,6 +208,7 @@ const VehicleDetails = () => {
               <CCol style={{
                 width: "auto"
               }}>
+                
               <CButton color="secondary" onClick={() => navigate(`/ceooffice/dashboard/vehicle/cam/${tractor.id}`)}>
                 View Vehicle Cam
               </CButton>
