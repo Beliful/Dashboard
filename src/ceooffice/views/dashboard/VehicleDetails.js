@@ -175,21 +175,24 @@ const VehicleDetails = () => {
           })}
         </CCol>
       </CRow>
-      {tractorDetails[tractorId - 1].type == VehicleTypes.TRUCK ? <CRow>
-        <CCol>
-          5 ton yük
-        </CCol>
-      </CRow> : null}
       <CRow>
         <CCol>
           <CCard className="mb-4">
             <CCardBody>
-              <CCol sm={5} style={{ marginBottom: 20 }}>
+            <CRow>
+              <CCol sm={4} style={{ marginBottom: 20 }}>
                 <h4 id="traffic" className="card-title mb-0">
                   {title} Details
                 </h4>
                 <h5>Time: {formatDate(latestData.timestamp)}</h5>
               </CCol>
+              <CCol sm={4} style={{ marginBottom: 20, marginLeft: 'auto', textAlign: 'right' }}>
+                {/* <h5 id="traffic" className="card-title mb-0"> */}
+                <p>This truck is carrying <strong>11 tons of cobblestone</strong>.</p>
+
+                {/* </h5> */}
+              </CCol>
+            </CRow>
               <CDropdown style={{ marginBottom: 30 }}>
                 <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
                 <CDropdownMenu>
