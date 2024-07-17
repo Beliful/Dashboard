@@ -175,31 +175,44 @@ const VehicleDetails = () => {
           })}
         </CCol>
       </CRow>
-      {tractorDetails[tractorId - 1].type == VehicleTypes.TRUCK ? <CRow>
-        <CCol>
-          5 ton yük
-        </CCol>
-      </CRow> : null}
       <CRow>
         <CCol>
           <CCard className="mb-4">
             <CCardBody>
-              <CCol sm={5} style={{ marginBottom: 20 }}>
+            <CRow>
+              <CCol sm={4} style={{ marginBottom: 20 }}>
                 <h4 id="traffic" className="card-title mb-0">
                   {title} Details
                 </h4>
                 <h5>Time: {formatDate(latestData.timestamp)}</h5>
               </CCol>
-              <CDropdown style={{ marginBottom: 30 }}>
-                <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
-                <CDropdownMenu>
-                  {tractors.map((tractor) => (
-                    <CDropdownItem key={tractor.id} onClick={() => handleTractorChange(tractor.id)}>
-                      {tractor.model}'s Tractor - {tractor.plateNumber}
-                    </CDropdownItem>
-                  ))}
-                </CDropdownMenu>
-              </CDropdown>
+              <CCol sm={4} style={{ marginBottom: 20, marginLeft: 'auto', textAlign: 'right' }}>
+                <p>This truck is carrying <strong>11 tons of cobblestone</strong>.</p>
+              </CCol>
+            </CRow>
+            <CRow style={{width: "auto"}}>
+              <CCol style={{
+                width: "auto"
+              }}>
+                <CDropdown style={{ marginBottom: 30 }}>
+                  <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
+                  <CDropdownMenu>
+                    {tractors.map((tractor) => (
+                      <CDropdownItem key={tractor.id} onClick={() => handleTractorChange(tractor.id)}>
+                        {tractor.model}'s Tractor - {tractor.plateNumber}
+                      </CDropdownItem>
+                    ))}
+                  </CDropdownMenu>
+                </CDropdown>
+              </CCol>
+              <CCol style={{
+                width: "auto"
+              }}>
+              <CButton color="secondary" onClick={() => navigate(`/ceooffice/dashboard/vehicle/cam/${tractor.id}`)}>
+                View Vehicle Cam
+              </CButton>
+              </CCol>
+              </CRow>
               <CRow>
                 {Object.entries(statusFeatures.tirePressure.subFeatures).map(
                   ([subKey, subValue]) => (
