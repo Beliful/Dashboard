@@ -195,11 +195,11 @@ const VehicleDetails = () => {
                 width: "auto"
               }}>
                 <CDropdown style={{ marginBottom: 30 }}>
-                  <CDropdownToggle color="secondary">Select Tractor</CDropdownToggle>
+                  <CDropdownToggle color="secondary">Select Vehicle</CDropdownToggle>
                   <CDropdownMenu>
                     {tractors.map((tractor) => (
                       <CDropdownItem key={tractor.id} onClick={() => handleTractorChange(tractor.id)}>
-                        {tractor.model}'s Tractor - {tractor.plateNumber}
+                        {tractor.model} - {tractor.plateNumber}
                       </CDropdownItem>
                     ))}
                   </CDropdownMenu>
