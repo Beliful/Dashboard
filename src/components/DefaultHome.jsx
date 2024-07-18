@@ -45,7 +45,7 @@ function DefaultHome() {
                 <CCardBody>
                 <CCardTitle>CEO Office</CCardTitle>
                 <CCardText>
-                    A dashboard application that displays the electricity usage and bill payment details of factories.
+                An application designed to track heavy trucks and their operational metrics for enhanced logistical efficiency and maintenance management.
                 </CCardText>
                 <CButton color="primary" href="/ceooffice">
                     Go to demo
