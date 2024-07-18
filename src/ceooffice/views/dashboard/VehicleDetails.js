@@ -186,9 +186,9 @@ const VehicleDetails = () => {
                 </h4>
                 <h5>Time: {formatDate(latestData.timestamp)}</h5>
               </CCol>
-              <CCol sm={4} style={{ marginBottom: 20, marginLeft: 'auto', textAlign: 'right' }}>
+              {tractorDetails[tractorId - 1].type == VehicleTypes.TRUCK ? (<CCol sm={4} style={{ marginBottom: 20, marginLeft: 'auto', textAlign: 'right' }}>
                 <p>This truck is carrying <strong>11 tons of cobblestone</strong>.</p>
-              </CCol>
+              </CCol>) : null}
             </CRow>
             <CRow style={{width: "auto"}}>
               <CCol style={{
